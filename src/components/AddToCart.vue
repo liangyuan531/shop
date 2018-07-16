@@ -1,0 +1,175 @@
+<template>
+  <div class="pop-window" style="margin-top:80px;">
+    <!-- purchase information at top -->
+    <div class="purchase-info" align="left">
+        <div class="title">
+            <div class="amount">
+                <strong>${{ amount }} Gift Card</strong>
+            </div>
+            <div class="description">
+                <input v-model="voucherInfo.description" placeholder="Decription or ingredients here">
+            </div>
+        </div>
+        <div class="optional">
+            <p>Add a message (optional)</p>
+        </div>
+        <div class="detail-message">
+            <div class="from-name">
+                <small>From Name</small>
+                <input v-model="voucherInfo.from" placeholder="From Name">
+            </div>
+            <div class="to">
+                <small>To</small>
+                <input v-model="voucherInfo.toName" placeholder="Name">
+                <input v-model="voucherInfo.toEmail" placeholder="Email">
+            </div>
+            <div class="message">
+                <p>Message</p>
+                <textarea v-model="voucherInfo.message"></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- increase or decrease -->
+    <div class="number">
+        <div @click="addNum"><img :src="add" /></div>
+        <div><span class="gift-num">{{ giftNum }}</span></div>
+        <div @click="minusNum"><img :src="minus" /></div>
+    </div>
+    <!-- cancel or add to cart -->
+    <div class="actions">
+        <button @click="closeBtn" class="cancel">Cancel</button>
+        <button @click="confirmBtn({amount, giftNum ,voucherInfo})" class="add">Add to Cart</button>
+    </div>
+  </div>
+</template>
+
+<script>
+import add from '@/assets/buttons/add.png'
+import minus from '@/assets/buttons/minus.png'
+import { mapState, mapActions } from 'vuex'
+export default {
+  name: 'AddToCart',
+  data () {
+    return {
+      add: add,
+      minus: minus,
+      voucherInfo: {
+          id: '',
+          description: '',
+          from: '',
+          toName: '',
+          toEmail: '',
+          message: ''     
+      }
+    }
+  },
+  computed: {
+    ...mapState({
+        amount: state => state['vouchers'].amount,
+        giftNum: state => state['addToCart'].giftNum
+    })
+  },
+  methods: {
+      closeBtn() {
+          // change isOpen to false
+          this.$store.dispatch('vouchers/closeForm')
+      },
+      confirmBtn(voucher) {
+          this.$store.dispatch('addToCart/addVouchers', voucher)
+          this.$store.dispatch('vouchers/closeForm')
+      },
+      addNum() {
+          this.$store.dispatch('addToCart/add')
+      },
+      minusNum() {
+          this.$store.dispatch('addToCart/minus')
+      }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.number {
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+.gift-num{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+.number div {
+    display:inline-block;
+}
+p {
+    font-weight: bold;
+}
+small {
+    font-size: smaller;
+    font-weight: bold;
+}
+strong{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 30px;
+
+}
+.pop-window {
+    width: 500px;
+    margin-top: 100px;
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    z-index: 9999;
+}
+.description input {
+    border-width: 0;
+    width: 100%;
+}
+.from-name input {
+    width: 100%;
+}
+.purchase-info {
+    margin: 10px 60px 10px 60px;
+}
+textarea {
+    width: 104%;
+    height: 60px;
+    resize: none;
+}
+.cancel {
+    cursor: pointer;
+    background: red;
+    border: 0;
+    padding: 10px 15px;
+    color: #ffffff;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin: 6px auto;
+    border: 1px solid red;
+}
+.add {
+    cursor: pointer;
+    background: #3862EB;
+    border: 0;
+    padding: 10px 15px;
+    color: #ffffff;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin: 6px auto;
+    border: 1px solid #3862EB;
+}
+.detail-message input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+</style>
