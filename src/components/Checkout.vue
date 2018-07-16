@@ -1,5 +1,11 @@
 <template>
   <div class="checkout-container">
+    <div class="login-bar">
+        <div>
+            <button class="login">Log in</button>
+            <span class="without-login">or you may also place an order as a guest without creating an account</span>
+        </div>
+    </div>
     <div class="purchase-info" align="left">
         <div class="contact">
             <div class="contact-title">
@@ -20,10 +26,14 @@
                 <input placeholder="Email address">
             </div>
             <div>
-                <input class="radio" type="radio" checked="checked">Register a new account
-                <label>
-                    Left unchecked you will be placing your order as a guest
+                <div class="box">
+                    <input type="radio"><span></span>
+                </div>
+                <label for>
+                    Register a new account<br>
+                    <span>Left unchecked you will be placing your order as a guest</span>
                 </label>
+                
             </div>
         </div>
 
@@ -98,6 +108,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.purchase-info {
+    margin: 30px auto;
+    
+}
+.checkout-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 .half-form {
     display: flex;
 }
@@ -114,6 +132,9 @@ label {
     font-weight: 400;
     font-size: 0.9em;
     margin-top: 10px;
+}
+.contact, .delivery, .payment {
+    margin-left: 50px;;
 }
 .contact input, .delivery input, .payment input {
     /* width: 100%; */
@@ -136,7 +157,7 @@ label {
 }
 .checkout-container {
     padding-left: 40px;
-    width: 600px;
+    width: 700px;
     background-color: white
 }
 .radio {
@@ -174,10 +195,29 @@ div {
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
     color:  #DDDDDD;
 }
-
+.login-bar {
+    background-color: #DDF6FA;
+    width: 650px;
+}
+.login {
+    cursor: pointer;
+    background: #3862EB;
+    border: 0;
+    padding: 10px 15px;
+    color: #ffffff;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    font-size: 0.8em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #3862EB;
+}
+.without-login {
+    margin-left: 10px;
+    color: #656768;
+}
 .box {
     float: left;
-    display: inline-block;
     width: 16px;
     height: 16px;
     margin-right: 10px;
@@ -185,16 +225,18 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     background: #fff;
     vertical-align: middle;
     border:1px solid #e4e4e7;
-    border-radius: 100%;}
-  .box input {
+    border-radius: 100%;
+}
+.box input {
     opacity: 0;
     position: absolute;
-    top:-3px;
+    top:-5px;
     left:-4px;
     width: 100%;
     height:100%;
-    z-index:100;/*使input按钮在span的上一层，不加点击区域会出现不灵敏*/}
-  input+span {
+    z-index:100;
+}
+input+span {
     display: block;
     width: 6px;
     height: 6px;
@@ -204,10 +246,13 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     top: 50%;
     left:50%;
     margin: -3px 0  0 -3px;
-    z-index:1;}
-  input[type="radio"] + span {
-    opacity: 0;}
-  input[type="radio"]:checked + span {
-    opacity: 1;}
+    z-index:1;
+}
+input[type="radio"] + span {
+    opacity: 0;
+    }
+input[type="radio"]:checked + span {
+    opacity: 1;
+}
 
 </style>
