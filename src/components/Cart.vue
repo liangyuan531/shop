@@ -1,7 +1,7 @@
 <template>
   <div class="cart">
     <div class="cart-header">
-        <label>Your Order</label>
+        <!-- <label>Your Order</label> -->
     </div>
     <div class="cart-content">
         <!-- cart items -->
@@ -9,7 +9,7 @@
             <div v-for="(voucher, id) in vouchers" :key="id">
                 <div class="cart-menu">
                     <div class="gift-num">
-                        <strong>{{voucher.giftNum}}X</strong>
+                        <strong>{{voucher.giftNum}}&nbsp; x &nbsp;</strong>
                     </div>
                     <div class="cart-menu-item">
                         <strong>${{voucher.amount}} Gift Card</strong>
@@ -67,6 +67,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400');
 .cart {
     text-align: center;
     color: #bbb;
@@ -134,10 +135,12 @@ div {
     font-weight: 400; 
 }
 strong {
-    font-weight: bold;
+    font-family: 'Nunito Sans', sans-serif
 }
 .extras-container {
     padding-top: 7px;
+    font-family: 'Nunito Sans';
+    font-size: 300;
 }
 .checkout-btn {
     cursor: pointer;
@@ -148,7 +151,6 @@ strong {
     color: #ffffff;
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
-    text-transform: uppercase;
     font-size: 0.8em;
     margin: 6px auto;
     border: 1px solid #3862EB;

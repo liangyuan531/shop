@@ -48,12 +48,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+div {
+  font-family: 'Nunito Sans', sans-serif
+}
 table {
   border: 0pt;
 }
 #gift_cards_head {
   margin-left: 0%;
-  font-family: 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
   font-size: 25px;
   font-weight: bold;
 }

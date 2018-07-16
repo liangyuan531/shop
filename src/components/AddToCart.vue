@@ -85,6 +85,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
 input {
     margin-top: 10px;
 }
@@ -173,6 +174,7 @@ textarea {
     margin-bottom: 15px;
 }
 .pop-container {
+    font-family: 'Nunito Sans', sans-serif;
     position: fixed;
     left: 0;
     top: 0;

@@ -115,6 +115,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
 .purchase-info {
     margin: 30px auto;
 }
@@ -172,9 +173,7 @@ small {
     font-weight: bold;
 }
 strong{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 25px;
-
 }
 input {
     /* -webkit-appearance: textfield; */
@@ -195,6 +194,7 @@ input {
 }
 div {
     display: block;
+    font-family: 'Nunito Sans', sans-serif
 }
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
     color:  #E3E3E3;
