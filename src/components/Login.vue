@@ -64,6 +64,7 @@ export default {
   margin-top: 20px;
   font-size: 10pt;
   color: #3862EB;
+  cursor: pointer;
 }
 .wide-form {
     width: 100%;
