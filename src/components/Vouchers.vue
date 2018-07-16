@@ -13,9 +13,9 @@
         </tr>
       </tbody>
     </table>
-    <div>
+    <!-- <div>
       <dialog-bar v-show="isOpen"></dialog-bar>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -24,9 +24,9 @@ import addToCart from './AddToCart.vue'
 import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'Vouchers',
-  components: {
-    'dialog-bar': addToCart
-  },
+  // components: {
+  //   'dialog-bar': addToCart
+  // },
   data () {
     return {
     }

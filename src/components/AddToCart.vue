@@ -1,4 +1,5 @@
 <template>
+<div class="pop-container">
   <div class="pop-window" style="margin-top:80px;">
     <!-- purchase information at top -->
     <div class="purchase-info" align="left">
@@ -41,6 +42,7 @@
         <button @click="confirmBtn({amount, giftNum ,voucherInfo})" class="add">Add to Cart</button>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -171,5 +173,19 @@ textarea {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
+}
+.pop-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    /* opacity: 0; */
+    /* visibility: visible; */
+    -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    /* overflow: visible;  */
 }
 </style>
