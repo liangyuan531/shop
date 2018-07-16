@@ -12,11 +12,10 @@ export const routes = [
         path: '/checkout',
         name: 'Checkout',
         component: Checkout
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
     }
-    // ,
-    // {
-    //     path: '/login',
-    //     name: 'Login',
-    //     component: Login
-    // }
 ]

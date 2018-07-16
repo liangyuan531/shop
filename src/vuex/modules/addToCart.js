@@ -46,11 +46,11 @@ const mutations = {
 		//reset giftnum
 		state.giftNum = 1
 		//reset voucherInfo
-		voucher.voucherInfo.description = ''
-		voucher.voucherInfo.from = ''
-		voucher.voucherInfo.toName = ''
-		voucher.voucherInfo.toEmail = ''
-		voucher.voucherInfo.message = ''
+		// voucher.description = ''
+		// voucher.from = ''
+		// voucher.toName = ''
+		// voucher.toEmail = ''
+		// voucher.message = ''
 	}
 }
 

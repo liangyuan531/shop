@@ -2,7 +2,9 @@
   <div class="checkout-container">
     <div class="login-bar">
         <div>
-            <button class="login" @click="login">Log in</button>
+            <router-link to="/login">
+                <button class="login">Log in</button>
+            </router-link>
             <span class="without-login">or you may also place an order as a guest without creating an account</span>
         </div>
     </div>
@@ -104,9 +106,9 @@ export default {
     }
   },
   methods: {
-      login: function() {
-          this.$store.dispatch('checkout/login')
-      }
+    //   login: function() {
+    //       this.$store.dispatch('checkout/login')
+    //   }
   }
 }
 </script>
@@ -115,11 +117,6 @@ export default {
 <style scoped>
 .purchase-info {
     margin: 30px auto;
-    
-}
-.checkout-container {
-    padding-top: 30px;
-    padding-bottom: 30px;
 }
 .half-form {
     display: flex;
@@ -163,7 +160,9 @@ label {
 .checkout-container {
     padding-left: 40px;
     width: 700px;
-    background-color: white
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .radio {
     position: absolute;  

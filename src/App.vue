@@ -12,9 +12,6 @@
     <div>
       <dialog-bar v-show="isOpen"></dialog-bar>
     </div>
-    <div>
-      <login v-show="isInLogin"></login>
-    </div>
   </div>
 </template>
 
@@ -22,7 +19,6 @@
 import ShopHeader from './components/Header.vue'
 import CartView from './components/Cart.vue'
 import AddToCart from './components/AddToCart.vue'
-import Login from './components/Login.vue'
 
 import { mapState } from 'vuex'
 export default {
@@ -30,14 +26,12 @@ export default {
   components: {
     shopHeader: ShopHeader,
     cartView: CartView,
-    dialogBar: AddToCart,
-    login: Login
+    dialogBar: AddToCart
   },
   computed: {
     ...mapState({
       isOpen: state => state['vouchers'].isOpen,
       //amount: state => state['vouchers'].amount,
-      isInLogin: state => state['checkout'].isLoginPage
     })
   },
 }

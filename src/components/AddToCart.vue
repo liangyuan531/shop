@@ -8,7 +8,7 @@
                 <strong>${{ amount }} Gift Card</strong>
             </div>
             <div class="description">
-                <input v-model="voucherInfo.description" placeholder="Decription or ingredients here">
+                <input v-model="description" placeholder="Decription or ingredients here">
             </div>
         </div>
         <div class="optional">
@@ -17,16 +17,16 @@
         <div class="detail-message">
             <div class="from-name">
                 <small>From Name</small>
-                <input v-model="voucherInfo.from" placeholder="From Name">
+                <input v-model="from" placeholder="From Name">
             </div>
             <div class="to">
                 <small>To</small>
-                <input v-model="voucherInfo.toName" placeholder="Name">
-                <input v-model="voucherInfo.toEmail" placeholder="Email">
+                <input v-model="toName" placeholder="Name">
+                <input v-model="toEmail" placeholder="Email">
             </div>
             <div class="message">
                 <small>Message</small>
-                <textarea v-model="voucherInfo.message"></textarea>
+                <textarea v-model="message"></textarea>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
     <!-- cancel or add to cart -->
     <div class="actions">
         <button @click="closeBtn" class="cancel">Cancel</button>
-        <button @click="confirmBtn({amount, giftNum ,voucherInfo})" class="add">Add to Cart</button>
+        <button @click="confirmBtn({amount, giftNum ,description, from, toName, toEmail, message})" class="add">Add to Cart</button>
     </div>
   </div>
 </div>
@@ -51,14 +51,11 @@ export default {
   name: 'AddToCart',
   data () {
     return {
-      voucherInfo: {
-          id: '',
           description: '',
           from: '',
           toName: '',
           toEmail: '',
           message: ''     
-      }
     }
   },
   computed: {

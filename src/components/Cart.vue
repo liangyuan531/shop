@@ -8,21 +8,28 @@
         <div class="cart-menus" v-if="isEmpty"> 
             <div v-for="(voucher, id) in vouchers" :key="id">
                 <div class="cart-menu">
+                    <div class="gift-num">
+                        <strong>{{voucher.giftNum}}X</strong>
+                    </div>
                     <div class="cart-menu-item">
-                    <strong>${{voucher.amount}} Gift Card</strong>
-                    <div class="extras-container"></div>
-                </div>
-                <div class="cart-menu-item-price">
-                    <strong>{{voucher.amount * voucher.giftNum}}</strong>
-                </div>
+                        <strong>${{voucher.amount}} Gift Card</strong>
+                        <div class="extras-container" v-if="voucher.from">
+                            <small>From:</small>{{voucher.from}}<br>
+                            <small>To:</small>{{voucher.toName}}<br>
+                            {{voucher.description}}
+                        </div>
+                    </div>
+                    <div class="cart-menu-item-price">
+                        <strong>{{voucher.amount * voucher.giftNum}}</strong>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- cart total price -->
         <div id="cart-totals">
             <div class="cart-total-price">
-                <span>Total:</span>
-                <span>${{totalPrice}}</span>
+                <strong>Total:</strong>
+                <strong>${{totalPrice}}</strong>
             </div>
         </div>
         <!-- checkout button -->
@@ -117,6 +124,10 @@ div {
     text-align: left;
     font-size: 0.8em;
 }
+.gift-num {
+    text-align: right;
+    font-size: 0.9em;
+}
 .cart-menu-item-price {
     text-align: right;
     font-size: .9em;
@@ -146,6 +157,6 @@ li {
     list-style-type: none
 }
 ul {
-        margin-left: 0px;
+    margin-left: 0px;
 }
 </style>

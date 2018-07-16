@@ -15,12 +15,12 @@ const actions = {
 }
 
 const mutations = {
-	openLogin(state) {
-		state.isLoginPage = true
-	},
-	close(state) {
-		state.isLoginPage = false
-	}
+	// openLogin(state) {
+	// 	state.isLoginPage = true
+	// },
+	// close(state) {
+	// 	state.isLoginPage = false
+	// }
 }
 
 export default {
