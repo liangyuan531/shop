@@ -61,10 +61,10 @@ export default {
   height: auto
 }
 .content {
-  /* display: flex;
-  display:-webkit-flex;
-  justify-content: center; */
-  /* -webkit-flex: 0 0 45%; */
+  display: flex;
+  justify-content: center; 
+  -webkit-flex: 0 0 20%;
+  flex: 0%;
   margin-left: 200px;
   margin-right: 200px;
 }
