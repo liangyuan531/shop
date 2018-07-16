@@ -1,23 +1,20 @@
 const state = {
-	//isLoginPage: false
+	isMatch: false
 }
 
 const getters = {
 }
 
 const actions = {
-	// login({ commit }) {
-	// 	commit('openLogin')
-	// },
-	// closeLogin({ commit }){
-	// 	commit('close')
-	// }
+	login({ commit }, user) {
+		commit('checkUser', user)
+	}
 }
 
 const mutations = {
-	// openLogin(state) {
-	// 	state.isLoginPage = true
-	// },
+	checkUser(state, user) {
+		
+	}
 	// close(state) {
 	// 	state.isLoginPage = false
 	// }

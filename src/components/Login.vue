@@ -16,15 +16,15 @@
         </div>
         <div class="wide-form" :class="{'has-error':errors.has('email')}">
           <label>Email</label>
-          <input v-model="userInfo.email" v-validate="email" data-rules="required|email" placeholder="Email Address">
+          <input v-model="userInput.email" v-validate="email" data-rules="required|email" placeholder="Email Address">
           <p class="text-danger" v-if="errors.has('email')"></p>
         </div>
         <div class="wide-form">
           <label>Password</label>
-          <input type="password" placeholder="Password">
+          <input v-model="userInput.password" type="password" placeholder="Password">
         </div>
         <div class="actions">
-          <button @click="login({userInfo})" class="loginBtn">Login</button>
+          <button @click="login({userInput, users})" class="loginBtn">Login</button>
         </div>
         <div class="forgetPwd">
           <link > Forgot password
@@ -36,17 +36,25 @@
 </template>
 
 <script>
+import { db } from '../firebase'
 export default {
   data() {
     return {
-      userInfo:{
-        email: ''
-      }
+      userInput: {
+        email: '',
+        passwrod: ''
+      },
+      users: []
+    }
+  },
+  firestore() {
+    return {
+      users: db.collection('users')
     }
   },
   methods: {
-    login(userInfo) {
-      this.$store.dispatch('checkout/login')
+    login(user) {
+      this.$store.dispatch('checkout/login', user)
     }
   }
 }

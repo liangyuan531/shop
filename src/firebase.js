@@ -1,13 +1,13 @@
-import { firebase } from '@firebase/app'
-import '@firebase/firestore/dist/index.node.cjs'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
 
 const firebaseApp = firebase.initializeApp({
-  apiKey: 'AIzaSyBnxzmatcKH2X3ytP0IM8kt8lSbFFGDBeI',
-  authDomain: 'vuedemo-16bf5.firebaseapp.com',
-  databaseURL: 'https://vuedemo-16bf5.firebaseio.com',
-  projectId: 'vuedemo-16bf5',
-  storageBucket: 'vuedemo-16bf5.appspot.com',
-  messagingSenderId: '1066292120232'
+    apiKey: "AIzaSyC_UwZY_kNUD3hroNEKALXlzpIFad0lpgc",
+    authDomain: "vouchershop-96768.firebaseapp.com",
+    databaseURL: "https://vouchershop-96768.firebaseio.com",
+    projectId: "vouchershop-96768",
+    storageBucket: "",
+    messagingSenderId: "854417877433"
 })
 
 export const db = firebaseApp.firestore()

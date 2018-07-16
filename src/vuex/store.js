@@ -4,6 +4,7 @@ import vouchers from './modules/vouchers'
 import addToCart from './modules/addToCart'
 import checkout from './modules/checkout'
 import cart from './modules/cart'
+import login from './modules/login'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
         vouchers,
         addToCart,
         checkout,
-        cart
+        cart,
+        login
     }
 })
