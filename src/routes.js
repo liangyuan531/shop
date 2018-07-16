@@ -1,5 +1,6 @@
 import Vouchers from './components/Vouchers'
 import Checkout from './components/Checkout'
+import Login from './components/Login'
 
 export const routes = [
     {
@@ -12,4 +13,10 @@ export const routes = [
         name: 'Checkout',
         component: Checkout
     }
+    // ,
+    // {
+    //     path: '/login',
+    //     name: 'Login',
+    //     component: Login
+    // }
 ]

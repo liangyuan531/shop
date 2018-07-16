@@ -7,10 +7,13 @@
       </div>
       <div class="cart">
         <cart-view></cart-view>
-      </div>
+      </div>   
     </div>
     <div>
       <dialog-bar v-show="isOpen"></dialog-bar>
+    </div>
+    <div>
+      <login v-show="isInLogin"></login>
     </div>
   </div>
 </template>
@@ -19,18 +22,22 @@
 import ShopHeader from './components/Header.vue'
 import CartView from './components/Cart.vue'
 import AddToCart from './components/AddToCart.vue'
+import Login from './components/Login.vue'
+
 import { mapState } from 'vuex'
 export default {
   name: 'App',
   components: {
     shopHeader: ShopHeader,
     cartView: CartView,
-    dialogBar: AddToCart
+    dialogBar: AddToCart,
+    login: Login
   },
   computed: {
     ...mapState({
-      isOpen: state => state['vouchers'].isOpen
+      isOpen: state => state['vouchers'].isOpen,
       //amount: state => state['vouchers'].amount,
+      isInLogin: state => state['checkout'].isLoginPage
     })
   },
 }
@@ -48,17 +55,22 @@ export default {
 .router-view {
   margin-right: 50px;
   float: left;
-  width: 70%;
+  /* width: 70%; */
+  width: auto; 
+  height: auto
 }
 .cart {
   margin-top: 50px;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 10px; 
+  width: auto; 
+  height: auto
 }
 .content {
+  /* display: flex;
   display:-webkit-flex;
-  flex: 0%;
-  -webkit-flex: 0 0 45%;
+  justify-content: center; */
+  /* -webkit-flex: 0 0 45%; */
   margin-left: 200px;
   margin-right: 200px;
 }

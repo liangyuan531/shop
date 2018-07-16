@@ -2,7 +2,7 @@
   <div class="checkout-container">
     <div class="login-bar">
         <div>
-            <button class="login">Log in</button>
+            <button class="login" @click="login">Log in</button>
             <span class="without-login">or you may also place an order as a guest without creating an account</span>
         </div>
     </div>
@@ -102,6 +102,11 @@ export default {
     return {
       
     }
+  },
+  methods: {
+      login: function() {
+          this.$store.dispatch('checkout/login')
+      }
   }
 }
 </script>
@@ -134,7 +139,7 @@ label {
     margin-top: 10px;
 }
 .contact, .delivery, .payment {
-    margin-left: 50px;;
+    margin-left: 50px;
 }
 .contact input, .delivery input, .payment input {
     /* width: 100%; */
@@ -193,7 +198,7 @@ div {
     display: block;
 }
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
-    color:  #DDDDDD;
+    color:  #E3E3E3;
 }
 .login-bar {
     background-color: #DDF6FA;

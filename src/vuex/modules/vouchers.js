@@ -11,7 +11,7 @@ const actions = {
         commit('setAmount', amount)
     },
     closeForm({ commit }) {
-        commit('setOpen')
+        commit('closeWindow')
     }
 }
 
@@ -20,7 +20,7 @@ const mutations = {
         state.amount = amount
         state.isOpen = true
     },
-    setOpen(state) {
+    closeWindow(state) {
         state.isOpen = false
     }
 }

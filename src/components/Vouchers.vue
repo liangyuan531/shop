@@ -1,6 +1,6 @@
 <template>
   <div class="Vouchers">
-    <table>
+    <table cellspacing="20px;">
       <thead id="gift_cards_head" align="left">Gift Cards</thead>
       <tbody>
         <tr>

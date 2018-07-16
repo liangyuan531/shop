@@ -25,16 +25,16 @@
                 <input v-model="voucherInfo.toEmail" placeholder="Email">
             </div>
             <div class="message">
-                <p>Message</p>
+                <small>Message</small>
                 <textarea v-model="voucherInfo.message"></textarea>
             </div>
         </div>
     </div>
     <!-- increase or decrease -->
     <div class="number">
-        <div @click="addNum"><img :src="add" /></div>
+        <div @click="addNum"><img src="../assets/buttons/add.png" /></div>
         <div><span class="gift-num">{{ giftNum }}</span></div>
-        <div @click="minusNum"><img :src="minus" /></div>
+        <div @click="minusNum"><img src="../assets/buttons/minus.png" /></div>
     </div>
     <!-- cancel or add to cart -->
     <div class="actions">
@@ -46,15 +46,11 @@
 </template>
 
 <script>
-import add from '@/assets/buttons/add.png'
-import minus from '@/assets/buttons/minus.png'
 import { mapState, mapActions } from 'vuex'
 export default {
   name: 'AddToCart',
   data () {
     return {
-      add: add,
-      minus: minus,
       voucherInfo: {
           id: '',
           description: '',
@@ -92,6 +88,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+input {
+    margin-top: 10px;
+}
 .number {
     display: inline-flex;
     margin-left: auto;
@@ -118,6 +117,8 @@ strong{
 
 }
 .pop-window {
+    padding-top: 20px;
+    padding-bottom: 20px;
     width: 500px;
     margin-top: 100px;
     margin: 0 auto;
@@ -187,5 +188,8 @@ textarea {
     -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
     transition: opacity 0.3s 0s, visibility 0s 0.3s;
     /* overflow: visible;  */
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+    color:  #E3E3E3;
 }
 </style>
