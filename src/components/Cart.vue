@@ -35,11 +35,11 @@
         </div>
         <!-- checkout button -->
         <div>
-            <router-link to="/checkout" v-show="showCheckout">
-                <button class="checkout-btn" @click="goToCheckout">Checkout</button>
-            </router-link>
+            <!-- <router-link to="/checkout" v-show="showCheckout"> -->
+            <button v-show="showCheckout" class="checkout-btn" @click="goToCheckout">Checkout</button>
+            <!-- </router-link> -->
             <!-- <router-link to="/order-detail"  -->
-                <button v-show="showPaynow" class="checkout-btn" @click="pay">Pay Now</button>
+            <button v-show="showPaynow" class="checkout-btn" @click="pay">Pay Now</button>
             <!-- </router-link> -->
         </div>
     </div>
@@ -80,7 +80,15 @@ export default {
   },
   methods: {
       goToCheckout() {
-          this.$store.dispatch('cart/checkout')
+          // go to checkout only after user add voucher to the cart
+          if(this.$store.getters['addToCart/totalPrice'] != 0){
+              this.$store.dispatch('cart/checkout')
+              // change button to pay now and show continu ordering
+              this.$router.push({path: '/checkout'})
+          }else {
+              alert('you have not choose any item')
+          }
+          
       },
       backToVouchers() {
           this.$store.dispatch('cart/backToVouchers')
