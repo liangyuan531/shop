@@ -42,7 +42,6 @@
                 <button v-show="showPaynow" class="checkout-btn" @click="pay">Pay Now</button>
             <!-- </router-link> -->
         </div>
-        <div>{{userInfo}}</div>
     </div>
   </div>
   <div class="continueOrder" v-show="continueOrder">
@@ -72,15 +71,12 @@ export default {
         showCheckout: state => state['cart'].showCheckout,
         showPaynow: state => state['cart'].showPaynow,
         continueOrder: state => state['cart'].continueOrderShow,
-        userInfo: state => state['checkout'].userInfo
+        // userInfo: state => state['checkout'].userInfo
     }),
     //...mapGetters(['addToCart/totalPrice'])
     totalPrice: function() {
         return this.$store.getters['addToCart/totalPrice']
-    },
-    // userInfo: function() {
-    //     return this.$store.getters['checkout']
-    // }
+    }
   },
   methods: {
       goToCheckout() {

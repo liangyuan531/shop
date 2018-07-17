@@ -1,23 +1,18 @@
 <template>
   <div class="Order-detail-container">
-    <div class="purchase-info" align="left">
+    <div class="Order-detail-info" align="left">
+
         <div class="contact">
             <div class="contact-title">
                 <strong>Personal Detail</strong>
             </div>
-            <div class="half-form">
-                <div class="left-field">
-                    <label>First Name</label>
-                    <input v-model="userInfo.firstName" placeholder="First Name">
-                </div>
-                <div class="right-field">
-                    <label>Last Name</label>
-                    <input v-model="userInfo.lastName" placeholder="Last Name">
-                </div>
+            <div class="wide-form">
+                <label>Full name</label>
+                <small>{{userInfo.firstName +' '+ userInfo.lastName }}</small>
             </div>
             <div class="wide-form">
                 <label>Email address</label>
-                <input v-model="userInfo.email" placeholder="Email address">
+                <small>{{userInfo.email}}</small>
             </div>
         </div>
 
@@ -27,26 +22,31 @@
             </div>
             <div class="wide-form">
                 <label>Street Address</label>
-                <input v-model="userInfo.address" placeholder="Street Address">
+                <small>{{userInfo.address }}</small>
             </div>
             <div class="half-form">
                 <div class="left-field">
                     <label>Postcode</label>
-                    <input v-model="userInfo.postcode" placeholder="Postcode">
+                    <small>{{userInfo.postcode }}</small>
                 </div>
                 <div class="right-field">
                     <label>City/town</label>
-                    <input v-model="userInfo.city" placeholder="City/town">
+                    <small>{{userInfo.city }}</small>
                 </div>
             </div>
             <div class="wide-form">
                 <label>Phone Number</label>
-                <input v-model="userInfo.phone" placeholder="Phone Number">
+                <small>{{userInfo.phone }}</small>
             </div>
             <div class="wide-form">
                 <label>Delivery instructions</label>
-                <input v-model="userInfo.instructions" placeholder="Delivery instructions">
+                <small>{{userInfo.instructions }}</small>
             </div>
+        </div>
+        <div align="center">
+            <router-link to="/">
+                <button class="confirm-btn" @click="goToVoucher">Confirm</button>
+            </router-link>
         </div>
     </div>
   </div>
@@ -58,34 +58,17 @@ export default {
   name: 'Checkout',
   data () {
     return {
-        userInfo: {
-            firstName: '',
-            lastName: '',
-            email: '',
-            address: '',
-            postcode: '',
-            city: '',
-            phone: '',
-            instructions: ''
-        },
-        cardInfo: {
-            cardNum: '',
-            expiry: '',
-            cvv: ''
-        }
     }
   },
   computed: {
       ...mapState({
-          firstName: state => state['checkout'].isChecked
+          firstName: state => state['checkout'].isChecked,
+          userInfo: state => state['checkout'].userInfo
       })
   },
   methods: {
-      login() {
-          //this.$store.dispatch('cart/goToLogin')
-      },
-      choose() {
-          this.$store.dispatch('checkout/choose')
+      goToVoucher() {
+        this.$store.dispatch('cart/backToVouchers')
       }
   }
 }
@@ -94,7 +77,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
-.purchase-info {
+.Order-detail-info {
     margin: 30px auto;
 }
 .half-form {
@@ -105,13 +88,6 @@ export default {
 }
 .right-field {
     padding-left: 10px;
-}
-.register span {
-    font-size: 15px;
-}
-.register small {
-    font-size: 10px;
-    color:  #AFAFAF;
 }
 label {
     padding-bottom: 8px;
@@ -125,34 +101,29 @@ label {
     margin-left: 50px;
     margin-top: 20px;
 }
-.contact input, .delivery input, .payment input {
-    /* width: 100%; */
-    padding: 8px;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    border-radius: 0 !important;
-}
-.left-field input, .right-field input {
-    border: 1px solid #ccc !important;
-    box-shadow: none !important;
-    width: 270px;
-}
 .wide-form {
     width: 100%;
 }
-.wide-form input {
-    border: 1px solid #ccc;
-    width: 560px
-}
-.checkout-container {
+
+.Order-detail-container {
     padding-left: 40px;
-    width: 700px;
+    width: 400px;
     background-color: white;
     padding-top: 30px;
     padding-bottom: 30px;
 }
-.radio {
-    position: absolute;  
+.confirm-btn {
+    cursor: pointer;
+    background: #3862EB;
+    width: 30%;
+    border: 0;
+    padding: 10px 15px;
+    color: #ffffff;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+    font-size: 1em;
+    margin-top: 20px;
+    border: 1px solid #3862EB;
 }
 small {
     font-size: smaller;
@@ -161,97 +132,8 @@ small {
 strong{
     font-size: 25px;
 }
-input {
-    /* -webkit-appearance: textfield; */
-    background-color: white;
-    /* -webkit-rtl-ordering: logical; */
-    /* cursor: text; */
-    /* text-rendering: auto; */
-    /* color: initial; */
-    /* letter-spacing: normal; */
-    /* word-spacing: normal; */
-    /* text-transform: none; */
-    text-indent: 0px;
-    /* text-shadow: none; */
-    display: inline-block;
-    text-align: start;
-    margin: 0em;
-    /* font: 400 13.3333px Arial; */
-}
 div {
     display: block;
     font-family: 'Nunito Sans', sans-serif
 }
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
-    color:  #E3E3E3;
-}
-table {
-    border-collapse:collapse;
-	border-spacing:0;
-    margin-top: 10px;
-    margin-bottom: 40px;
-}
-table small, table span {
-    display: block;
-}
-.login-bar {
-    background-color: #F1FCFF;
-    width: 650px;
-}
-.login {
-    cursor: pointer;
-    background: #3862EB;
-    border: 0;
-    padding: 10px 15px;
-    color: #ffffff;
-    -webkit-transition: 0.3s ease;
-    transition: 0.3s ease;
-    font-size: 0.8em;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #3862EB;
-}
-.without-login {
-    margin-left: 10px;
-    color: #656768;
-}
-.box {
-    float: left;
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    position: relative;
-    background: #fff;
-    vertical-align: middle;
-    border:1px solid #e4e4e7;
-    border-radius: 100%;
-}
-.box input {
-    opacity: 0;
-    position: absolute;
-    top:-5px;
-    left:-4px;
-    width: 100%;
-    height:100%;
-    z-index:100;
-}
-input+span {
-    display: block;
-    width: 14px;
-    height: 14px;
-    border-radius:50%;
-    position: absolute;
-    background: #3862EB;
-    top: 30%;
-    left:30%;
-    margin: -3px 0  0 -3px;
-    z-index:1;
-}
-input[type="radio"] + span {
-    opacity: 0;
-    }
-input[type="radio"]:checked + span {
-    opacity: 1;
-}
-
 </style>

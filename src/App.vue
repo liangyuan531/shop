@@ -7,7 +7,7 @@
           <router-view/>
         </transition>
       </div>
-      <div class="cart" v-show="cartHidden">
+      <div class="cart" v-show="cartShow">
         <cart-view></cart-view>
       </div>   
     </div>
@@ -34,7 +34,7 @@ export default {
     ...mapState({
       isOpen: state => state['vouchers'].isOpen,
       //amount: state => state['vouchers'].amount,
-      cartHidden: state => state['cart'].cartHidden
+      cartShow: state => state['cart'].cartShow
     })
   },
 }
@@ -78,10 +78,10 @@ export default {
   opacity: 1;
 }
 .fade-enter-active {
-  transition: opacity .5s;
+  transition: opacity .2s;
 }
 .fade-leave-active {
   opacity: 0;
-  transition: opacity .5s;
+  transition: opacity .2s;
 }
 </style>
