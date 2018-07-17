@@ -6,9 +6,9 @@ const getters = {
 }
 
 const actions = {
-	// login({ commit }) {
+	// goToLogin({ commit }) {
 	// 	commit('openLogin')
-	// },
+	// }
 	// closeLogin({ commit }){
 	// 	commit('close')
 	// }

@@ -1,20 +1,36 @@
 const state = {
-    vouchers: []
+    vouchers: [],
+    showCheckout: true,
+    showPaynow: false
 }
 
 const getters = {
 }
 
 const actions = {
-    // addToCart({ commit }, vouchers) {
-    //     commit('addVouchers', vouchers)
-    // }
+    checkout({ commit }) {
+        commit('showPay')
+    },
+    goToLogin({ commit }) {
+        commit('hideBtn')
+    },
+    backToCheckout({ commit }) {
+        commit('showPayBtn')
+    }
 }
 
 const mutations = {
-    // addVouchers(state, vouchers) {
-    //     state.push(vouchers)
-    // }
+    showPay(state) {
+        state.showCheckout = false
+        state.showPaynow = true
+    },
+    hideBtn(state) {
+        state.showCheckout = false
+        state.showPaynow = false
+    },
+    showPayBtn(state) {
+        state.showPaynow = true
+    }
 }
 
 export default {

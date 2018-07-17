@@ -3,7 +3,7 @@
     <div class="login-bar">
         <div>
             <router-link to="/login">
-                <button class="login">Log in</button>
+                <button class="login" @click="login">Log in</button>
             </router-link>
             <span class="without-login">or you may also place an order as a guest without creating an account</span>
         </div>
@@ -28,13 +28,24 @@
                 <input placeholder="Email address">
             </div>
             <div>
-                <div class="box">
-                    <input type="radio"><span></span>
-                </div>
-                <label for>
+                <table class="register">
+                    <tr>
+                        <td>
+                            <div class="box">
+                                <input type="radio"><span></span>
+                            </div>
+                        </td>
+                        <td>
+                            <span>Register a new account</span>
+                            <small>Left unchecked you will be placing your order as a guest</small>
+                        </td>
+                    </tr>
+                </table>
+                
+                <!-- <label for>
                     Register a new account<br>
                     <span>Left unchecked you will be placing your order as a guest</span>
-                </label>
+                </label> -->
                 
             </div>
         </div>
@@ -58,12 +69,12 @@
                 </div>
             </div>
             <div class="wide-form">
-                <label>Delivery instructions</label>
-                <input placeholder="Delivery instructions">
+                <label>Phone Number</label>
+                <input placeholder="Phone Number">
             </div>
             <div class="wide-form">
-                <label>Street Address</label>
-                <input placeholder="Street Address">
+                <label>Delivery instructions</label>
+                <input placeholder="Delivery instructions">
             </div>
         </div>
 
@@ -106,9 +117,9 @@ export default {
     }
   },
   methods: {
-    //   login: function() {
-    //       this.$store.dispatch('checkout/login')
-    //   }
+      login() {
+          //this.$store.dispatch('cart/goToLogin')
+      }
   }
 }
 </script>
@@ -128,6 +139,13 @@ export default {
 .right-field {
     padding-left: 10px;
 }
+.register span {
+    font-size: 15px;
+}
+.register small {
+    font-size: 10px;
+    color:  #AFAFAF;
+}
 label {
     padding-bottom: 8px;
     display: block;
@@ -138,6 +156,7 @@ label {
 }
 .contact, .delivery, .payment {
     margin-left: 50px;
+    margin-top: 20px;
 }
 .contact input, .delivery input, .payment input {
     /* width: 100%; */
@@ -199,8 +218,17 @@ div {
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
     color:  #E3E3E3;
 }
+table {
+    border-collapse:collapse;
+	border-spacing:0;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+table small, table span {
+    display: block;
+}
 .login-bar {
-    background-color: #DDF6FA;
+    background-color: #F1FCFF;
     width: 650px;
 }
 .login {
@@ -222,8 +250,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 }
 .box {
     float: left;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     margin-right: 10px;
     position: relative;
     background: #fff;
@@ -242,13 +270,13 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 }
 input+span {
     display: block;
-    width: 6px;
-    height: 6px;
+    width: 14px;
+    height: 14px;
     border-radius:50%;
     position: absolute;
-    background: #1796f9;
-    top: 50%;
-    left:50%;
+    background: #3862EB;
+    top: 30%;
+    left:30%;
     margin: -3px 0  0 -3px;
     z-index:1;
 }

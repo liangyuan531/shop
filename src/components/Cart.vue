@@ -34,8 +34,11 @@
         </div>
         <!-- checkout button -->
         <div>
-            <router-link to="/checkout">
-                <button class="checkout-btn">Checkout</button>
+            <router-link to="/checkout" v-show="showCheckout">
+                <button class="checkout-btn" @click="goToCheckout">Checkout</button>
+            </router-link>
+             <router-link to="/" v-show="showPaynow">
+                <button class="checkout-btn">Pay Now</button>
             </router-link>
         </div>
     </div>
@@ -55,12 +58,19 @@ export default {
     ...mapState({
         // any item in cart or not
         isEmpty: state => state['addToCart'].isAdd,
-        vouchers: state => state['addToCart'].addedVouchers
+        vouchers: state => state['addToCart'].addedVouchers,
+        showCheckout: state => state['cart'].showCheckout,
+        showPaynow: state => state['cart'].showPaynow
     }),
     //...mapGetters(['addToCart/totalPrice'])
     totalPrice: function() {
         return this.$store.getters['addToCart/totalPrice']
     }
+  },
+  methods: {
+      goToCheckout() {
+          this.$store.dispatch('cart/checkout')
+      }
   }
 }
 </script>
@@ -151,7 +161,7 @@ strong {
     color: #ffffff;
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
-    font-size: 0.8em;
+    font-size: 1em;
     margin: 6px auto;
     border: 1px solid #3862EB;
 }

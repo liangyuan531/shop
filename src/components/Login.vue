@@ -5,7 +5,7 @@
         <div class="info">
           <span>Go back to</span>
             <router-link to="/checkout">
-                <link class="checkout">Checkout
+                <link class="checkout" @click="backToCheckout">Checkout
             </router-link>
           <span>if you don't have an account</span>
         </div>
@@ -56,12 +56,21 @@ export default {
   methods: {
     login(user) {
       this.$store.dispatch('checkout/login', user)
+    },
+    backToCheckout() {
+      this.$store.dispatch('cart/backToCheckout')
+      console.log('back');
+      
     }
   }
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400');
+div {
+  font-family: 'Nunito Sans', sans-serif
+}
 .login-container {
     padding-left: 40px;
     width: 650px;
@@ -86,7 +95,7 @@ export default {
   margin-bottom: 20px;
 }
 .login-bar {
-    background-color: #DDF6FA;
+    background-color: #F1FCFF;
     width: 600px;
     padding-top: 5px;
     padding-bottom: 20px;
@@ -121,9 +130,7 @@ a:visited {
   color: #3862EB
 }
 strong{
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 25px;
-
 }
 input {
     background-color: white;
