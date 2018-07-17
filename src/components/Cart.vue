@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="cart">
     <div class="cart-header">
         <!-- <label>Your Order</label> -->
@@ -37,12 +38,19 @@
             <router-link to="/checkout" v-show="showCheckout">
                 <button class="checkout-btn" @click="goToCheckout">Checkout</button>
             </router-link>
-             <router-link to="/" v-show="showPaynow">
+             <router-link to="/x" v-show="showPaynow">
                 <button class="checkout-btn">Pay Now</button>
             </router-link>
         </div>
     </div>
   </div>
+  <div class="continueOrder" v-show="continueOrder">
+      <router-link to="/">
+        <button class="continueOrder-btn" @click="backToVouchers">Continue Ordering</button>
+      </router-link>
+  </div>
+  
+</div>
 </template>
 
 <script>
@@ -60,7 +68,8 @@ export default {
         isEmpty: state => state['addToCart'].isAdd,
         vouchers: state => state['addToCart'].addedVouchers,
         showCheckout: state => state['cart'].showCheckout,
-        showPaynow: state => state['cart'].showPaynow
+        showPaynow: state => state['cart'].showPaynow,
+        continueOrder: state => state['cart'].continueOrderShow
     }),
     //...mapGetters(['addToCart/totalPrice'])
     totalPrice: function() {
@@ -70,6 +79,9 @@ export default {
   methods: {
       goToCheckout() {
           this.$store.dispatch('cart/checkout')
+      },
+      backToVouchers() {
+          this.$store.dispatch('cart/backToVouchers')
       }
   }
 }
@@ -152,6 +164,9 @@ strong {
     font-family: 'Nunito Sans';
     font-size: 300;
 }
+div {
+    font-family: 'Nunito Sans';
+}
 .checkout-btn {
     cursor: pointer;
     background: #3862EB;
@@ -164,6 +179,23 @@ strong {
     font-size: 1em;
     margin: 6px auto;
     border: 1px solid #3862EB;
+}
+.continueOrder {
+    margin-top: 50px;
+}
+.continueOrder-btn {
+    background-color:transparent;
+    font-weight: bold;
+    margin-top: 100px;
+    cursor: pointer;
+    width: 90%;
+    border: 0;
+    padding: 15px 15px;
+    color: #9e9d9d;
+    transition: 0.3s ease;
+    font-size: 1em;
+    margin: 6px auto;
+    border: 1px solid rgb(160, 160, 160);
 }
 li {
     list-style-type: none

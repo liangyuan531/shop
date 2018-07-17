@@ -1,7 +1,8 @@
 const state = {
     vouchers: [],
     showCheckout: true,
-    showPaynow: false
+    showPaynow: false,
+    continueOrderShow: false
 }
 
 const getters = {
@@ -10,12 +11,16 @@ const getters = {
 const actions = {
     checkout({ commit }) {
         commit('showPay')
+        commit('showContinue')
     },
     goToLogin({ commit }) {
         commit('hideBtn')
     },
     backToCheckout({ commit }) {
         commit('showPayBtn')
+    },
+    backToVouchers({ commit }) {
+        commit('showCheckoutBtn')
     }
 }
 
@@ -30,6 +35,15 @@ const mutations = {
     },
     showPayBtn(state) {
         state.showPaynow = true
+        state.showCheckout = false
+    },
+    showCheckoutBtn(state) {
+        state.showCheckout = true
+        state.showPaynow = false
+        state.continueOrderShow = false
+    },
+    showContinue(state) {
+        state.continueOrderShow = true
     }
 }
 
