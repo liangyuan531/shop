@@ -32,7 +32,7 @@
                     <tr>
                         <td>
                             <div class="box">
-                                <input type="radio"><span></span>
+                                <input type="radio" :checked="check" @click="choose"><span></span>
                             </div>
                         </td>
                         <td>
@@ -98,7 +98,7 @@
             </div>
             <div>
                 <div class="box">
-                    <input type="radio"><span></span>
+                    <input type="radio" :checked="check" @click="choose"><span></span>
                 </div>
                 <label for>Save card for next time</label>
             </div>
@@ -109,16 +109,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Checkout',
   data () {
     return {
-      
     }
+  },
+  computed: {
+      ...mapState({
+          check: state => state['checkout'].isChecked
+      })
   },
   methods: {
       login() {
           //this.$store.dispatch('cart/goToLogin')
+      },
+      choose() {
+          this.$store.dispatch('checkout/choose')
       }
   }
 }

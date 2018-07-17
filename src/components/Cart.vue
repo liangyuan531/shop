@@ -38,7 +38,7 @@
             <router-link to="/checkout" v-show="showCheckout">
                 <button class="checkout-btn" @click="goToCheckout">Checkout</button>
             </router-link>
-             <router-link to="/x" v-show="showPaynow">
+             <router-link to="/order-detail" v-show="showPaynow">
                 <button class="checkout-btn">Pay Now</button>
             </router-link>
         </div>

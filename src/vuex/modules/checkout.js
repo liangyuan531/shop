@@ -1,26 +1,20 @@
 const state = {
-	//isLoginPage: false
+	isChecked: false
 }
 
 const getters = {
 }
 
 const actions = {
-	// goToLogin({ commit }) {
-	// 	commit('openLogin')
-	// }
-	// closeLogin({ commit }){
-	// 	commit('close')
-	// }
+	choose({ commit }) {
+		commit('check')
+	}
 }
 
 const mutations = {
-	// openLogin(state) {
-	// 	state.isLoginPage = true
-	// },
-	// close(state) {
-	// 	state.isLoginPage = false
-	// }
+	check(state) {
+		state.isChecked ? state.isChecked = false : state.isChecked = true
+	}
 }
 
 export default {
