@@ -47,8 +47,19 @@
                 <!-- <label for>
                     Register a new account<br>
                     <span>Left unchecked you will be placing your order as a guest</span>
-                </label> -->
-                
+                </label> -->   
+            </div>
+            <div class="password input" v-if="check">
+                <div class="wide-form">
+                    <label>Create Your Password</label>
+                    <input type="password" v-validate="'required|min:6'" name="pwd1" v-model="userInfo.password1" placeholder="Password">
+                    <div class="validate" v-show="errors.has('pwd1')">{{ errors.first('pwd1') }}</div>
+                </div>
+                <div class="wide-form">
+                    <label>Input Your Password Again</label>
+                    <input type="password" v-validate="'required|min:6'" name="pwd2" v-model="userInfo.password2" placeholder="Password">
+                    <div class="validate" v-show="errors.has('pwd2')">{{ errors.first('pwd2') }}</div>
+                </div>
             </div>
         </div>
 
@@ -64,7 +75,7 @@
             <div class="half-form">
                 <div class="left-field">
                     <label>Postcode</label>
-                    <input v-validate="'digits:4'" name="postcode" v-model="userInfo.postcode" placeholder="Postcode">
+                    <input v-validate="'required|digits:4'" name="postcode" v-model="userInfo.postcode" placeholder="Postcode">
                     <div class="validate" v-show="errors.has('postcode')">{{ errors.first('postcode') }}</div>
                 </div>
                 <div class="right-field">
@@ -96,12 +107,12 @@
             <div class="half-form">
                 <div class="left-field">
                     <label>Expiry Date</label>
-                    <input v-validate="'date_format:MM/YY'" name="expiry" v-model="cardInfo.expiry" placeholder="MM/YY">
+                    <input v-validate="'required|date_format:MM/YY'" name="expiry" v-model="cardInfo.expiry" placeholder="MM/YY">
                     <div class="validate" v-show="errors.has('expiry')">{{ errors.first('expiry') }}</div>
                 </div>
                 <div class="right-field">
                     <label>CVV</label>
-                    <input v-validate="'digits:3'" name="cvv" v-model="cardInfo.cvv" placeholder="CVV">
+                    <input v-validate="'required|digits:3'" name="cvv" v-model="cardInfo.cvv" placeholder="CVV">
                     <div class="validate" v-show="errors.has('cvv')">{{ errors.first('cvv') }}</div>
                 </div>
             </div>
@@ -150,13 +161,10 @@ export default {
       login() {
           //this.$store.dispatch('cart/goToLogin')
       },
-      // radio
+      // radio choosing
       choose() {
           this.$store.dispatch('checkout/choose')
-      },
-    //   checkinput() {
-    //       this.$validator.validateAll();
-    //   }
+      }
   },
   watch: {
 

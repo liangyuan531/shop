@@ -3,7 +3,9 @@ const state = {
 	isChecked: false,
 	userInfo: {
 		firstName: '',
-        lastName: '',
+		lastName: '',
+		password1: '',
+		password2: '',
         email: '',
         address: '',
         postcode: '',
