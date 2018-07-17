@@ -39,7 +39,7 @@
                 <button class="checkout-btn" @click="goToCheckout">Checkout</button>
             </router-link>
              <router-link to="/order-detail" v-show="showPaynow">
-                <button class="checkout-btn">Pay Now</button>
+                <button class="checkout-btn" @click="pay">Pay Now</button>
             </router-link>
         </div>
     </div>
@@ -82,6 +82,20 @@ export default {
       },
       backToVouchers() {
           this.$store.dispatch('cart/backToVouchers')
+      },
+      pay() {
+          this.$http.post('http://jsonplaceholder.typicode.com/posts', {
+            body: {
+              cardNumber: "78787878787878",
+              expiryDate: "08/28",
+              CVV: 888
+            }
+           }, {emulateJSON: true}).then(response => {
+              console.log('succuss');
+              console.log(response.body);
+           }, response => {
+              console.log('error');
+           })
       }
   }
 }

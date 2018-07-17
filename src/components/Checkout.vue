@@ -114,6 +114,7 @@ export default {
   name: 'Checkout',
   data () {
     return {
+        
     }
   },
   computed: {

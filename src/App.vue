@@ -3,7 +3,9 @@
     <shop-header></shop-header>
     <div class="content">
       <div class="router-view">
-        <router-view/>
+        <transition name='fade' mode='out-in'>
+          <router-view/>
+        </transition>
       </div>
       <div class="cart">
         <cart-view></cart-view>
@@ -67,5 +69,18 @@ export default {
   flex: 0%;
   margin-left: 200px;
   margin-right: 200px;
+}
+.fade-enter {
+  opacity: 0;
+}
+.fade-leave {
+  opacity: 1;
+}
+.fade-enter-active {
+  transition: opacity .5s;
+}
+.fade-leave-active {
+  opacity: 0;
+  transition: opacity .5s;
 }
 </style>
