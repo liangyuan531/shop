@@ -16,7 +16,8 @@
             <div class="half-form">
                 <div class="left-field">
                     <label>First Name</label>
-                    <input v-model="userInfo.firstName" placeholder="First Name">
+                    <input v-validate="'required'" name="first name" v-model="userInfo.firstName" placeholder="First Name">
+                    <div class="validate" v-show="errors.has('first name')">{{ errors.first('first name') }}</div>
                 </div>
                 <div class="right-field">
                     <label>Last Name</label>
@@ -25,7 +26,8 @@
             </div>
             <div class="wide-form">
                 <label>Email address</label>
-                <input v-model="userInfo.email" placeholder="Email address">
+                <input v-validate="'required|email'" name="email" v-model="userInfo.email" placeholder="Email address">
+                <div class="validate" v-show="errors.has('email')">{{ errors.first('email') }}</div>
             </div>
             <div>
                 <table class="register">
@@ -56,21 +58,25 @@
             </div>
             <div class="wide-form">
                 <label>Street Address</label>
-                <input v-model="userInfo.address" placeholder="Street Address">
+                <input v-validate="'required'" name="street address" v-model="userInfo.address" placeholder="Street Address">
+                <div class="validate" v-show="errors.has('street address')">{{ errors.first('street address') }}</div>
             </div>
             <div class="half-form">
                 <div class="left-field">
                     <label>Postcode</label>
-                    <input v-model="userInfo.postcode" placeholder="Postcode">
+                    <input v-validate="'digits:4'" name="postcode" v-model="userInfo.postcode" placeholder="Postcode">
+                    <div class="validate" v-show="errors.has('postcode')">{{ errors.first('postcode') }}</div>
                 </div>
                 <div class="right-field">
                     <label>City/town</label>
-                    <input v-model="userInfo.city" placeholder="City/town">
+                    <input v-validate="'required'" name="city/town" v-model="userInfo.city" placeholder="City/town">
+                    <div class="validate" v-show="errors.has('city/town')">{{ errors.first('city/town') }}</div>
                 </div>
             </div>
             <div class="wide-form">
                 <label>Phone Number</label>
-                <input v-model="userInfo.phone" placeholder="Phone Number">
+                <input v-validate="'required|numeric'" name="phone" v-model="userInfo.phone" placeholder="Phone Number">
+                <div class="validate" v-show="errors.has('phone')">{{ errors.first('phone') }}</div>
             </div>
             <div class="wide-form">
                 <label>Delivery instructions</label>
@@ -84,16 +90,19 @@
             </div>
             <div class="wide-form">
                 <label>Card Number</label>
-                <input v-model="cardInfo.cardNum" placeholder="Card Number">
+                <input v-validate="'required|credit_card'" name="credit" v-model="cardInfo.cardNum" placeholder="Card Number">
+                <div class="validate" v-show="errors.has('credit')">{{ errors.first('credit') }}</div>
             </div>
             <div class="half-form">
                 <div class="left-field">
                     <label>Expiry Date</label>
-                    <input v-model="cardInfo.expiry" placeholder="MM/YY">
+                    <input v-validate="'date_format:MM/YY'" name="expiry" v-model="cardInfo.expiry" placeholder="MM/YY">
+                    <div class="validate" v-show="errors.has('expiry')">{{ errors.first('expiry') }}</div>
                 </div>
                 <div class="right-field">
                     <label>CVV</label>
-                    <input v-model="cardInfo.cvv" placeholder="CVV">
+                    <input v-validate="'digits:3'" name="cvv" v-model="cardInfo.cvv" placeholder="CVV">
+                    <div class="validate" v-show="errors.has('cvv')">{{ errors.first('cvv') }}</div>
                 </div>
             </div>
             <div>
@@ -144,7 +153,10 @@ export default {
       // radio
       choose() {
           this.$store.dispatch('checkout/choose')
-      }
+      },
+    //   checkinput() {
+    //       this.$validator.validateAll();
+    //   }
   },
   watch: {
 
@@ -314,5 +326,9 @@ input[type="radio"] + span {
 input[type="radio"]:checked + span {
     opacity: 1;
 }
-
+.validate {
+    margin-top: 1px;
+    color: red;
+    font-size: 8pt;
+}
 </style>

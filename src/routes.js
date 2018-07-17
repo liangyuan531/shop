@@ -18,7 +18,8 @@ export const routes = [
         path: '/login',
         name: 'Login',
         component: Login
-    },{
+    },
+    {
         path: '/order-detail',
         name: 'Order-detail',
         component: OrderDetail
