@@ -16,16 +16,16 @@
             <div class="half-form">
                 <div class="left-field">
                     <label>First Name</label>
-                    <input placeholder="First Name">
+                    <input v-model="userInfo.firstName" placeholder="First Name">
                 </div>
                 <div class="right-field">
                     <label>Last Name</label>
-                    <input placeholder="Last Name">
+                    <input v-model="userInfo.lastName" placeholder="Last Name">
                 </div>
             </div>
             <div class="wide-form">
                 <label>Email address</label>
-                <input placeholder="Email address">
+                <input v-model="userInfo.email" placeholder="Email address">
             </div>
             <div>
                 <table class="register">
@@ -56,25 +56,25 @@
             </div>
             <div class="wide-form">
                 <label>Street Address</label>
-                <input placeholder="Street Address">
+                <input v-model="userInfo.address" placeholder="Street Address">
             </div>
             <div class="half-form">
                 <div class="left-field">
                     <label>Postcode</label>
-                    <input placeholder="Postcode">
+                    <input v-model="userInfo.postcode" placeholder="Postcode">
                 </div>
                 <div class="right-field">
                     <label>City/town</label>
-                    <input placeholder="City/town">
+                    <input v-model="userInfo.city" placeholder="City/town">
                 </div>
             </div>
             <div class="wide-form">
                 <label>Phone Number</label>
-                <input placeholder="Phone Number">
+                <input v-model="userInfo.phone" placeholder="Phone Number">
             </div>
             <div class="wide-form">
                 <label>Delivery instructions</label>
-                <input placeholder="Delivery instructions">
+                <input v-model="userInfo.instructions" placeholder="Delivery instructions">
             </div>
         </div>
 
@@ -84,16 +84,16 @@
             </div>
             <div class="wide-form">
                 <label>Card Number</label>
-                <input placeholder="Card Number">
+                <input v-model="cardInfo.cardNum" placeholder="Card Number">
             </div>
             <div class="half-form">
                 <div class="left-field">
                     <label>Expiry Date</label>
-                    <input placeholder="MM/YY">
+                    <input v-model="cardInfo.expiry" placeholder="MM/YY">
                 </div>
                 <div class="right-field">
                     <label>CVV</label>
-                    <input placeholder="CVV">
+                    <input v-model="cardInfo.cvv" placeholder="CVV">
                 </div>
             </div>
             <div>
@@ -103,32 +103,51 @@
                 <label for>Save card for next time</label>
             </div>
         </div>
-
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { mapFields } from 'vuex-map-fields';
 export default {
   name: 'Checkout',
   data () {
     return {
-        
+        // userInfo: {
+        //     firstName: '',
+        //     lastName: '',
+        //     email: '',
+        //     address: '',
+        //     postcode: '',
+        //     city: '',
+        //     phone: '',
+        //     instructions: ''
+        // },
+        // cardInfo: {
+        //     cardNum: '',
+        //     expiry: '',
+        //     cvv: ''
+        // }
     }
   },
   computed: {
       ...mapState({
           check: state => state['checkout'].isChecked
-      })
+      }),
+      ...mapFields('checkout',['userInfo', 'cardInfo'])
   },
   methods: {
       login() {
           //this.$store.dispatch('cart/goToLogin')
       },
+      // radio
       choose() {
           this.$store.dispatch('checkout/choose')
       }
+  },
+  watch: {
+
   }
 }
 </script>

@@ -38,10 +38,11 @@
             <router-link to="/checkout" v-show="showCheckout">
                 <button class="checkout-btn" @click="goToCheckout">Checkout</button>
             </router-link>
-             <router-link to="/order-detail" v-show="showPaynow">
-                <button class="checkout-btn" @click="pay">Pay Now</button>
-            </router-link>
+            <!-- <router-link to="/order-detail"  -->
+                <button v-show="showPaynow" class="checkout-btn" @click="pay">Pay Now</button>
+            <!-- </router-link> -->
         </div>
+        <div>{{userInfo}}</div>
     </div>
   </div>
   <div class="continueOrder" v-show="continueOrder">
@@ -49,17 +50,18 @@
         <button class="continueOrder-btn" @click="backToVouchers">Continue Ordering</button>
       </router-link>
   </div>
-  
 </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import CheckoutVue from './Checkout.vue';
 export default {
   name: 'CartView',
   data () {
     return {
-      subTotal: 0
+      subTotal: 0,
+      status: false
     }
   },
   computed: {
@@ -69,12 +71,16 @@ export default {
         vouchers: state => state['addToCart'].addedVouchers,
         showCheckout: state => state['cart'].showCheckout,
         showPaynow: state => state['cart'].showPaynow,
-        continueOrder: state => state['cart'].continueOrderShow
+        continueOrder: state => state['cart'].continueOrderShow,
+        userInfo: state => state['checkout'].userInfo
     }),
     //...mapGetters(['addToCart/totalPrice'])
     totalPrice: function() {
         return this.$store.getters['addToCart/totalPrice']
-    }
+    },
+    // userInfo: function() {
+    //     return this.$store.getters['checkout']
+    // }
   },
   methods: {
       goToCheckout() {
@@ -88,14 +94,24 @@ export default {
             body: {
               cardNumber: "78787878787878",
               expiryDate: "08/28",
-              CVV: 888
+              CVV: 888,
+              status: true
             }
            }, {emulateJSON: true}).then(response => {
               console.log('succuss');
               console.log(response.body);
+              this.status = response.body[status]
            }, response => {
               console.log('error');
            })
+           console.log("this:",this.status);
+           
+           //if(this.status){
+               this.$router.push({path: '/order-detail'});
+           //}else {
+           //    alert('input card number')
+           //}
+           this.$store.dispatch('cart/hindCart')
       }
   }
 }

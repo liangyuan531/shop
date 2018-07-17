@@ -2,7 +2,8 @@ const state = {
     vouchers: [],
     showCheckout: true,
     showPaynow: false,
-    continueOrderShow: false
+    continueOrderShow: false,
+    cartHidden: true
 }
 
 const getters = {
@@ -21,6 +22,9 @@ const actions = {
     },
     backToVouchers({ commit }) {
         commit('showCheckoutBtn')
+    },
+    hindCart({ commit }) {
+        commit('hideCart')
     }
 }
 
@@ -44,6 +48,9 @@ const mutations = {
     },
     showContinue(state) {
         state.continueOrderShow = true
+    },
+    hideCart(state) {
+        state.cartHidden = false
     }
 }
 

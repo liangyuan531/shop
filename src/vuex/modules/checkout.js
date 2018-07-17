@@ -1,8 +1,25 @@
+import { getField } from 'vuex-map-fields';
 const state = {
-	isChecked: false
+	isChecked: false,
+	userInfo: {
+		firstName: '',
+        lastName: '',
+        email: '',
+        address: '',
+        postcode: '',
+        city: '',
+        phone: '',
+        instructions: ''
+	},
+	cardInfo: {
+		cardNum: '',
+        expiry: '',
+        cvv: ''
+	}
 }
 
 const getters = {
+	getField,
 }
 
 const actions = {

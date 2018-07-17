@@ -7,7 +7,7 @@
           <router-view/>
         </transition>
       </div>
-      <div class="cart">
+      <div class="cart" v-show="cartHidden">
         <cart-view></cart-view>
       </div>   
     </div>
@@ -34,6 +34,7 @@ export default {
     ...mapState({
       isOpen: state => state['vouchers'].isOpen,
       //amount: state => state['vouchers'].amount,
+      cartHidden: state => state['cart'].cartHidden
     })
   },
 }
