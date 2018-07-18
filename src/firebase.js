@@ -9,7 +9,9 @@ const firebaseApp = firebase.initializeApp({
     storageBucket: "",
     messagingSenderId: "854417877433"
 })
-
-export const db = firebaseApp.firestore()
-
+const firestore = firebaseApp.firestore()
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+firestore.settings(settings);
+export const db = firestore
+export const firebaseAuth = firebase.auth
 

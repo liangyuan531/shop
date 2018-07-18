@@ -1,11 +1,17 @@
 <template>
   <div class="checkout-container">
-    <div class="login-bar">
+    <div class="login-bar" v-if="!isLogin">
         <div>
             <router-link to="/login">
-                <button class="login" @click="login">Log in</button>
+                <button class="login">Log in</button>
             </router-link>
-            <span class="without-login">or you may also place an order as a guest without creating an account</span>
+            <span class="info-login">or you may also place an order as a guest without creating an account</span>
+        </div>
+    </div>
+    <div class="logout-bar" v-else>
+        <div>
+            <button class="logout" @click="logout">Log out</button>
+            <span class="info-logout">Welcome {{useremail}}</span>
         </div>
     </div>
     <div class="purchase-info" align="left">
@@ -130,36 +136,27 @@
 <script>
 import { mapState } from 'vuex'
 import { mapFields } from 'vuex-map-fields';
+import firebase from 'firebase/app'
+require('firebase/auth')
 export default {
   name: 'Checkout',
   data () {
     return {
-        // userInfo: {
-        //     firstName: '',
-        //     lastName: '',
-        //     email: '',
-        //     address: '',
-        //     postcode: '',
-        //     city: '',
-        //     phone: '',
-        //     instructions: ''
-        // },
-        // cardInfo: {
-        //     cardNum: '',
-        //     expiry: '',
-        //     cvv: ''
-        // }
+        
     }
   },
   computed: {
       ...mapState({
-          check: state => state['checkout'].isChecked
+          check: state => state['checkout'].isChecked,
+          isLogin: state => state['login'].isLogin,
+          useremail: state => state['login'].useremail
       }),
       ...mapFields('checkout',['userInfo', 'cardInfo'])
   },
   methods: {
-      login() {
-          //this.$store.dispatch('cart/goToLogin')
+      logout() {
+          firebase.auth().signOut()
+          this.$store.dispatch('login/logout')
       },
       // radio choosing
       choose() {
@@ -276,11 +273,11 @@ table {
 table small, table span {
     display: block;
 }
-.login-bar {
+.login-bar, .logout-bar {
     background-color: #F1FCFF;
     width: 650px;
 }
-.login {
+.login, .logout {
     cursor: pointer;
     background: #3862EB;
     border: 0;
@@ -293,7 +290,7 @@ table small, table span {
     margin-bottom: 20px;
     border: 1px solid #3862EB;
 }
-.without-login {
+.info-login, .info-logout {
     margin-left: 10px;
     color: #656768;
 }

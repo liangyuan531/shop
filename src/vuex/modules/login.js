@@ -1,5 +1,7 @@
 const state = {
-	isMatch: false
+	isMatch: false,
+	useremail: '',
+	isLogin: false
 }
 
 const getters = {
@@ -7,13 +9,20 @@ const getters = {
 
 const actions = {
 	login({ commit }, user) {
-		commit('checkUser', user)
+		commit('showUser', user)
+	},
+	logout({ commit }) {
+		commit('logout')
 	}
 }
 
 const mutations = {
-	checkUser(state, user) {
-		
+	showUser(state, user) {
+		state.useremail = user.email
+		state.isLogin = true
+	},
+	logout(state) {
+		state.isLogin = false
 	}
 	// close(state) {
 	// 	state.isLoginPage = false

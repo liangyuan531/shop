@@ -16,20 +16,23 @@
         </div>
         <div class="wide-form" :class="{'has-error':errors.has('email')}">
           <label>Email</label>
-          <input v-model="userInput.email" v-validate="email" data-rules="required|email" placeholder="Email Address">
-          <p class="text-danger" v-if="errors.has('email')"></p>
+          <input v-model="email" v-validate="email" name="email" data-rules="required|email" placeholder="Email Address">
+          <div class="validate" v-show="errors.has('email')">{{ errors.first('email') }}</div>
         </div>
         <div class="wide-form">
           <label>Password</label>
-          <input v-model="userInput.password" type="password" placeholder="Password">
+          <input v-model="password" v-validate="'required|min:6'" type="password" name="pwd" placeholder="Password">
+          <div class="validate" v-show="errors.has('pwd')">{{ errors.first('pwd') }}</div>
         </div>
         <div class="actions">
-          <button @click="login({userInput, users})" class="loginBtn">Login</button>
+          <button @click.prevent="login({email, password})" class="loginBtn">
+            Login
+          </button>
+        
         </div>
         <div class="forgetPwd">
           <link > Forgot password
         </div>
-        <div>{{users}}</div>
       </div>
     </div>
     
@@ -38,13 +41,13 @@
 
 <script>
 import { db } from '../firebase'
+import firebase from 'firebase/app'
+require('firebase/auth')
 export default {
   data() {
     return {
-      userInput: {
-        email: '',
-        passwrod: ''
-      },
+      email: '',
+      password: '',
       users: []
     }
   },
@@ -55,7 +58,20 @@ export default {
   },
   methods: {
     login(user) {
-      this.$store.dispatch('checkout/login', user)
+      firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+        .then(() => {
+          this.$router.push({path: '/checkout'})
+          this.$store.dispatch('login/login', user)
+        }).catch((error) =>{
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+            console.log(error);
+        })
     },
     backToCheckout() {
       this.$store.dispatch('cart/backToCheckout')
@@ -176,5 +192,10 @@ label {
     margin: 6px auto;
     border: 1px solid #3862EB;
     width: 150px;
+}
+.validate {
+    margin-top: 1px;
+    color: red;
+    font-size: 8pt;
 }
 </style>
