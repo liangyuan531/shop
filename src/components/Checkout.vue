@@ -166,8 +166,9 @@ export default {
           this.$store.dispatch('checkout/choose')
       }
   },
-  watch: {
-
+  beforeMount: function() {
+      // in confirm page back to checkout page
+      this.$store.dispatch('cart/showCart')
   }
 }
 </script>

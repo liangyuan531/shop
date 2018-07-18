@@ -24,6 +24,9 @@ const actions = {
 	},
 	addVouchers({ commit }, voucher) {
 		commit('addVoucher', voucher)
+	},
+	resetCart({ commit }) {
+		commit('resetCart')
 	}
 }
 
@@ -51,6 +54,9 @@ const mutations = {
 		// voucher.toName = ''
 		// voucher.toEmail = ''
 		// voucher.message = ''
+	},
+	resetCart(state) {
+		state.addedVouchers = []
 	}
 }
 

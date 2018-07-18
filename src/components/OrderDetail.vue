@@ -1,7 +1,29 @@
 <template>
   <div class="Order-detail-container">
     <div class="Order-detail-info" align="left">
-
+        <!-- <div class="vouchers">
+            <div class="voucher-title">
+                <strong>Vouchers</strong>
+            </div>
+            <div v-for="(voucher, id) in vouchers" :key="id">
+                <div class="cart-menu">
+                    <div class="gift-num">
+                        <strong>{{voucher.giftNum}}&nbsp; x &nbsp;</strong>
+                    </div>
+                    <div class="cart-menu-item">
+                        <strong>${{voucher.amount}} Gift Card</strong>
+                        <div class="extras-container" v-if="voucher.from">
+                            <small>From:</small>{{voucher.from}}<br>
+                            <small>To:</small>{{voucher.toName}}<br>
+                            {{voucher.description}}
+                        </div>
+                    </div>
+                    <div class="cart-menu-item-price">
+                        <strong>{{voucher.amount * voucher.giftNum}}</strong>
+                    </div>
+                </div>
+            </div>
+        </div> -->
         <div class="contact">
             <div class="contact-title">
                 <strong>Personal Detail</strong>
@@ -63,12 +85,14 @@ export default {
   computed: {
       ...mapState({
           firstName: state => state['checkout'].isChecked,
-          userInfo: state => state['checkout'].userInfo
+          userInfo: state => state['checkout'].userInfo,
+          vouchers: state => state['addToCart'].addedVouchers
       })
   },
   methods: {
       goToVoucher() {
         this.$store.dispatch('cart/backToVouchers')
+        this.$store.dispatch('addToCart/resetCart')
       }
   }
 }

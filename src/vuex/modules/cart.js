@@ -26,7 +26,7 @@ const actions = {
     hindCart({ commit }) {
         commit('hideCart')
     },
-    backToVouchers({ commit }) {
+    showCart({ commit }){
         commit('showCart')
     }
 }
@@ -45,6 +45,7 @@ const mutations = {
         state.showCheckout = false
     },
     showCheckoutBtn(state) {
+        state.cartShow = true
         state.showCheckout = true
         state.showPaynow = false
         state.continueOrderShow = false
@@ -57,6 +58,9 @@ const mutations = {
     },
     showCart(state) {
         state.cartShow = true
+        state.showCheckout = false
+        state.showPaynow = true
+        state.continueOrderShow = true
     }
 }
 

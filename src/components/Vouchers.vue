@@ -41,6 +41,9 @@ export default {
     openDialog(amount) {
      this.$store.dispatch('vouchers/openForm', amount)
     }
+  },
+  beforeMount: function() {
+    this.$store.dispatch('cart/backToVouchers')
   }
   
 }
