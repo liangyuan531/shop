@@ -104,7 +104,7 @@ div {
 }
 .login-container {
     padding-left: 40px;
-    width: 650px;
+    width: 700px;
     background-color: white;
     padding-top: 30px;
     padding-bottom: 30px;

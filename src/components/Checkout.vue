@@ -55,16 +55,11 @@
                     <span>Left unchecked you will be placing your order as a guest</span>
                 </label> -->   
             </div>
-            <div class="password input" v-if="check">
+            <div class="password" v-if="check">
                 <div class="wide-form">
                     <label>Create Your Password</label>
-                    <input type="password" v-validate="'required|min:6'" name="pwd1" v-model="userInfo.password1" placeholder="Password">
-                    <div class="validate" v-show="errors.has('pwd1')">{{ errors.first('pwd1') }}</div>
-                </div>
-                <div class="wide-form">
-                    <label>Input Your Password Again</label>
-                    <input type="password" v-validate="'required|min:6'" name="pwd2" v-model="userInfo.password2" placeholder="Password">
-                    <div class="validate" v-show="errors.has('pwd2')">{{ errors.first('pwd2') }}</div>
+                    <input type="password" v-validate="'required|min:6'" name="pwd" v-model="userInfo.password" placeholder="Password">
+                    <div class="validate" v-show="errors.has('pwd')">{{ errors.first('pwd') }}</div>
                 </div>
             </div>
         </div>

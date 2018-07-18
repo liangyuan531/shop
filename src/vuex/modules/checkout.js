@@ -4,8 +4,7 @@ const state = {
 	userInfo: {
 		firstName: '',
 		lastName: '',
-		password1: '',
-		password2: '',
+		password: '',
         email: '',
         address: '',
         postcode: '',

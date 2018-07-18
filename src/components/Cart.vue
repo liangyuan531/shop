@@ -39,7 +39,7 @@
             <button v-show="showCheckout" class="checkout-btn" @click="goToCheckout">Checkout</button>
             <!-- </router-link> -->
             <!-- <router-link to="/order-detail"  -->
-            <button v-show="showPaynow" class="checkout-btn" @click="pay">Pay Now</button>
+            <button v-show="showPaynow" class="checkout-btn" @click.prevent="pay">Pay Now</button>
             <!-- </router-link> -->
         </div>
     </div>
@@ -55,6 +55,8 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import CheckoutVue from './Checkout.vue';
+import firebase from 'firebase/app'
+require('firebase/auth')
 export default {
   name: 'CartView',
   data () {
@@ -71,7 +73,7 @@ export default {
         showCheckout: state => state['cart'].showCheckout,
         showPaynow: state => state['cart'].showPaynow,
         continueOrder: state => state['cart'].continueOrderShow,
-        // userInfo: state => state['checkout'].userInfo
+        userInfo: state => state['checkout'].userInfo
     }),
     //...mapGetters(['addToCart/totalPrice'])
     totalPrice: function() {
@@ -93,29 +95,33 @@ export default {
       backToVouchers() {
           this.$store.dispatch('cart/backToVouchers')
       },
-      pay() {
-          this.$http.post('http://jsonplaceholder.typicode.com/posts', {
-            body: {
-              cardNumber: "78787878787878",
-              expiryDate: "08/28",
-              CVV: 888,
-              status: true
-            }
-           }, {emulateJSON: true}).then(response => {
-              console.log('succuss');
-              console.log(response.body);
-              this.status = response.body[status]
-           }, response => {
+      pay(user) {
+          if(this.userInfo.email != '' && this.userInfo.password != ''){
+              console.log('created');
+              firebase.auth().createUserWithEmailAndPassword(this.userInfo.email, this.userInfo.password)
+                //.then()
+          }
+          if(this.userInfo.firstName != ''){
+            this.$http.post('http://jsonplaceholder.typicode.com/posts', {
+                body: {
+                    cardNumber: "78787878787878",
+                    expiryDate: "08/28",
+                    CVV: 888,
+                    status: true
+                }
+            }, {emulateJSON: true}).then(response => {
+                //console.log('succuss');
+                console.log(response.body)
+                //this.status = response.body[status]
+                console.log(response.status)
+            }, response => {
               console.log('error');
-           })
-           console.log("this:",this.status);
-           
-           //if(this.status){
-               this.$router.push({path: '/order-detail'});
-           //}else {
-           //    alert('input card number')
-           //}
-           this.$store.dispatch('cart/hindCart')
+            })
+            this.$router.push({path: '/order-detail'});
+            this.$store.dispatch('cart/hindCart')
+           }else {
+               alert('you must input your information and deliver address')
+           }
       }
   }
 }
