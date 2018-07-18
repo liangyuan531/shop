@@ -149,8 +149,6 @@ export default {
     position: relative;
     border: 1px solid #f6f6f6;
     background-color: #fefefe;
-    text-align: center;
-    color: #bbb;
     width: 300px;
     top: 28px;
     display: block;

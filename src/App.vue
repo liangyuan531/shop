@@ -12,6 +12,7 @@
         <cart-view></cart-view>
       </div>   
     </div>
+    <shop-footer class="footer"></shop-footer>
     <div>
       <dialog-bar v-show="isOpen"></dialog-bar>
     </div>
@@ -23,12 +24,14 @@ import ShopHeader from './components/Header.vue'
 import CartView from './components/Cart.vue'
 import AddToCart from './components/AddToCart.vue'
 import MessageComponent from './components/Message.vue'
+import ShopFooter from './components/Footer.vue'
 
 import { mapState } from 'vuex'
 export default {
   name: 'App',
   components: {
     shopHeader: ShopHeader,
+    shopFooter: ShopFooter,
     cartView: CartView,
     dialogBar: AddToCart,
     messageComponent: MessageComponent
@@ -73,6 +76,9 @@ export default {
   flex: 0%;
   margin-left: 200px;
   margin-right: 200px;
+}
+.footer {
+  margin-top: 140px;
 }
 .fade-enter {
   opacity: 0;
