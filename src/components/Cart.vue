@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import CheckoutVue from './Checkout.vue';
 import firebase from 'firebase/app'
 require('firebase/auth')
@@ -78,17 +78,25 @@ export default {
     //...mapGetters(['addToCart/totalPrice'])
     totalPrice: function() {
         return this.$store.getters['addToCart/totalPrice']
-    }
+    },
+    
   },
   methods: {
+      ...mapActions(['addMessage', 'clearMessage']),
       goToCheckout() {
+          this.clearMessage()
           // go to checkout only after user add voucher to the cart
           if(this.$store.getters['addToCart/totalPrice'] != 0){
               this.$store.dispatch('cart/checkout')
               // change button to pay now and show continu ordering
               this.$router.push({path: '/checkout'})
           }else {
-              alert('you have not choose any item')
+              let message_obj = {
+                message: "You have not choose any item",
+                messageClass: "danger",
+                autoClose: true
+            }
+            this.addMessage(message_obj)
           }
           
       },
@@ -120,7 +128,12 @@ export default {
             this.$router.push({path: '/order-detail'});
             this.$store.dispatch('cart/hindCart')
            }else {
-               alert('you must input your information and deliver address')
+            let message_obj = {
+                message: 'You must input your information and deliver address',
+                messageClass: "danger",
+                autoClose: true
+            }
+            this.addMessage(message_obj)
            }
       }
   }

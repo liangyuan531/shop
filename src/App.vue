@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <shop-header></shop-header>
+    <message-component></message-component>
     <div class="content">
       <div class="router-view">
         <transition name='fade' mode='out-in'>
@@ -30,7 +31,7 @@ export default {
     shopHeader: ShopHeader,
     cartView: CartView,
     dialogBar: AddToCart,
-    MessageComponent
+    messageComponent: MessageComponent
   },
   computed: {
     ...mapState({

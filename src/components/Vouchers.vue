@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     ...mapState({
-      isOpen: state => state['vouchers'].isOpen
+      isOpen: state => state['vouchers'].isOpen,
       //amount: state => state['vouchers'].amount,
     })
   },

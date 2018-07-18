@@ -30,15 +30,12 @@
             <i v-if="isLoading" class="fa fa-spinner fa-spin" />
             Login
           </button>
-        
         </div>
         <div class="forgetPwd">
           <link > Forgot password
         </div>
-        <div>{{msg}}</div>
       </div>
     </div>
-    
   </div>
 </template>
 
@@ -61,20 +58,20 @@ export default {
       users: db.collection('users')
     }
   },
-  methods: {
+  computed: {
     ...mapState({
-      msg: state => state['message'].messageGroup
-    }),
-    // msg: function() {
-    //     return this.$store.getters['message/messages']
-    // },
+      //msg: state => state['message'].messageGroup,
+      msgs: state => state['message'].messageGroup,
+    })
+  },
+  methods: {
     ...mapActions(['addMessage', 'clearMessage']),
-    login(user) {
-      this.isLoading = true
+    login(user) { 
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(() => {
+          this.isLoading = true
           // clear message
-          this.clearMessage();
+          this.clearMessage()
           this.$router.push({path: '/checkout'})
           this.$store.dispatch('login/login', user)
         }).catch((error) =>{

@@ -3,8 +3,7 @@ const state = {
 		messageClass: '',
 		message: '',
 		timeoutEvent: null
-    },
-    msgs: ''
+    }
 }
 
 const getters = {
@@ -14,8 +13,8 @@ const getters = {
 }
 
 const actions = {
-	addMessage({ commit }, obj) {
-		commit('ADD_MESSAGE', obj);
+	addMessage({ commit }, message_obj) {
+		commit('ADD_MESSAGE', message_obj);
 	},
 	clearMessage({ commit }) {
 		commit('clearMessage');
@@ -23,20 +22,20 @@ const actions = {
 }
 
 const mutations = {
-	'ADD_MESSAGE' (state, obj) {
-        console.log(obj);
-        state.messageGroup.messageClass = obj.messageClass
-        state.messageGroup.message = obj.message
-        state.msgs = obj.message
-		// if (state.timeoutEvent) {
-		// 	clearTimeout(state.timeoutEvent);
-		// }
-		// state.timeoutEvent = setTimeout(function() {
-		// 	state.messageGroup = {
-		// 		messageClass: '',
-		// 		message: ''
-		// 	}
-		// }, 5000);
+	'ADD_MESSAGE' (state, message_obj) {
+        console.log(message_obj);
+        
+        state.messageGroup.messageClass = message_obj.messageClass
+        state.messageGroup.message = message_obj.message
+		if (state.timeoutEvent) {
+			clearTimeout(state.timeoutEvent);
+		}
+		state.timeoutEvent = setTimeout(function() {
+			state.messageGroup = {
+				messageClass: '',
+				message: ''
+			}
+		}, 3000);
 	},
 	clearMessage(state) {
 		state.messageGroup = {
@@ -47,7 +46,6 @@ const mutations = {
 }
 
 export default {
-    //namespaced: true,
 	state,
 	mutations,
 	actions,

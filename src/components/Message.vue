@@ -1,10 +1,12 @@
 <template>
-<div :class="(showMessageBar?'':'hidden') + '  message-bar'">
-  <div :class="messageClass">
-    <Button bsStyle='link' class="btn btn-link close-btn" @click="closeMessageBar">
-      <i class="fa fa-times"></i>
-    </Button>
-    <div>{{ currentMessage }}</div>
+<div class="message-container">
+  <div :class="(showMessageBar?'':'hidden') + '  message-bar'">
+    <div :class="messageClass">
+      <!-- <Button bsStyle='link' class="btn btn-link close-btn" @click="closeMessageBar">
+        <i class="fa fa-times"></i>
+      </Button> -->
+      <div>{{ currentMessage }}</div>
+    </div>
   </div>
 </div>
 </template>
