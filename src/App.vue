@@ -21,6 +21,7 @@
 import ShopHeader from './components/Header.vue'
 import CartView from './components/Cart.vue'
 import AddToCart from './components/AddToCart.vue'
+import MessageComponent from './components/Message.vue'
 
 import { mapState } from 'vuex'
 export default {
@@ -28,7 +29,8 @@ export default {
   components: {
     shopHeader: ShopHeader,
     cartView: CartView,
-    dialogBar: AddToCart
+    dialogBar: AddToCart,
+    MessageComponent
   },
   computed: {
     ...mapState({

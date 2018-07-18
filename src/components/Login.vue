@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="login-info" align="left">
       <div class="login-bar">
         <div class="info">
@@ -26,6 +27,7 @@
         </div>
         <div class="actions">
           <button @click.prevent="login({email, password})" class="loginBtn">
+            <i v-if="isLoading" class="fa fa-spinner fa-spin" />
             Login
           </button>
         
@@ -33,6 +35,7 @@
         <div class="forgetPwd">
           <link > Forgot password
         </div>
+        <div>{{msg}}</div>
       </div>
     </div>
     
@@ -42,13 +45,15 @@
 <script>
 import { db } from '../firebase'
 import firebase from 'firebase/app'
+import { mapActions, mapState } from 'vuex'
 require('firebase/auth')
 export default {
   data() {
     return {
       email: '',
       password: '',
-      users: []
+      users: [],
+      isLoading: false
     }
   },
   firestore() {
@@ -57,20 +62,30 @@ export default {
     }
   },
   methods: {
+    ...mapState({
+      msg: state => state['message'].messageGroup
+    }),
+    // msg: function() {
+    //     return this.$store.getters['message/messages']
+    // },
+    ...mapActions(['addMessage', 'clearMessage']),
     login(user) {
+      this.isLoading = true
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(() => {
+          // clear message
+          this.clearMessage();
           this.$router.push({path: '/checkout'})
           this.$store.dispatch('login/login', user)
         }).catch((error) =>{
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
-          } else {
-            alert(errorMessage);
+          let message_obj = {
+            message: error.message,
+            messageClass: "danger",
+            autoClose: true
           }
-            console.log(error);
+          this.addMessage(message_obj)
+        }).then(() => {
+          this.isLoading = false
         })
     },
     backToCheckout() {
@@ -188,7 +203,7 @@ label {
     -webkit-transition: 0.3s ease;
     transition: 0.3s ease;
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 0.9em;
     margin: 6px auto;
     border: 1px solid #3862EB;
     width: 150px;
