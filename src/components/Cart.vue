@@ -63,7 +63,7 @@ export default {
     return {
       subTotal: 0,
       status: false,
-      gotdata: null
+      responseStatus: -1
     }
   },
   computed: {
@@ -74,7 +74,8 @@ export default {
         showCheckout: state => state['cart'].showCheckout,
         showPaynow: state => state['cart'].showPaynow,
         continueOrder: state => state['cart'].continueOrderShow,
-        userInfo: state => state['checkout'].userInfo
+        userInfo: state => state['checkout'].userInfo,
+        cardInfo: state => state['checkout'].cardInfo
     }),
     //...mapGetters(['addToCart/totalPrice'])
     totalPrice: function() {
@@ -104,47 +105,75 @@ export default {
       backToVouchers() {
           this.$store.dispatch('cart/backToVouchers')
       },
-      pay(user) {
-          if(this.userInfo.email != '' && this.userInfo.password != ''){
-              console.log('created');
-              firebase.auth().createUserWithEmailAndPassword(this.userInfo.email, this.userInfo.password)
-                //.then()
-          }
-          if(this.userInfo.firstName != ''){
-            this.$http.post('http://jsonplaceholder.typicode.com/posts', {
+      payWithRequest(){
+          this.$http.post('http://dev.posski.com/v5/AbacusPayment', {
                 body: {
-                    "Email": "zarni.api1244@abacus.co",
-                    "FirstName": "zarni",
-                    "LastName": "aung",
-                    "CardHolder": "zarni aung",
-                    "CardNumber": "4111111111111111",
+                    "Email": this.userInfo.email,
+                    "FirstName": this.userInfo.firstName,
+                    "LastName": this.userInfo.lastName,
+                    "CardHolder": "liang",
+                    "CardNumber": this.cardInfo.cardNum,
                     "ExpiryYear": "2020",
                     "ExpiryMonth": "08",
-                    "Amount": "1080",
-                    "Cvv": "123",
+                    "Amount": this.totalPrice,
+                    "Cvv": this.cardInfo.cvv,
                     "Country":"AUS"
+                    // "Status": {
+                    //     "Code": 0,
+                    //     "Message": ""
+                    // }
                 }
-            }, {emulateJSON: true}).then(response => {
-                //console.log('succuss');
-                console.log(response.body)
-                var eValue=eval('response.body.'+'body[Email]');
-                //gotdata = response.body
-                //this.status = response.body["status"]
-                console.log(eValue)
+            }).then(response => {
+                var data = response.body
+                console.log(data)
+                this.responseStatus = data.Status.Code
+                if(this.responseStatus != 0){
+                    let message_obj = {
+                        message: 'Payment unsuccessful',
+                        messageClass: "danger"
+                    }
+                    this.addMessage(message_obj)
+                    return
+                }
+                let message_obj = {
+                    message: 'Successfully pay',
+                    messageClass: "success"
+                }
+                this.addMessage(message_obj)
+                // go to order detail page
+                this.$router.push({path: '/order-detail'});
+                // hind cart
+                this.$store.dispatch('cart/hindCart')
             }, response => {
               console.log('error');
             })
-            this.$router.push({path: '/order-detail'});
-            this.$store.dispatch('cart/hindCart')
-           }else {
-            let message_obj = {
-                message: 'You must input your information and deliver address',
-                messageClass: "danger",
-                autoClose: true
-            }
-            this.addMessage(message_obj)
+      },
+      pay(user) {
+          if(this.userInfo.email != '' && this.userInfo.password != ''){
+               console.log('created');
+               firebase.auth().createUserWithEmailAndPassword(this.userInfo.email, this.userInfo.password)
+                //.then()
+          }
+          if(this.userInfo.firstName === '' && this.userInfo.address === ''){
+                let message_obj = {
+                    message: 'You must input your information and deliver address',
+                    messageClass: "danger"
+                }
+               this.addMessage(message_obj)
+               return
+          }
+          if(this.cardInfo.cardNum === ''){
+               let message_obj = {
+                    message: 'You must input payment information',
+                    messageClass: "danger"
+               }
+               this.addMessage(message_obj)
+               return
            }
+           //if all required information is given, make a payment
+           this.payWithRequest()
       }
+      
   }
 }
 </script>

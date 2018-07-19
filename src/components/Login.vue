@@ -15,10 +15,10 @@
         <div class="login-title">
           <strong>Login</strong>
         </div>
-        <div class="wide-form" :class="{'has-error':errors.has('email')}">
+        <div class="wide-form">
           <label>Email</label>
-          <input v-model="email" v-validate="email" name="email" data-rules="required|email" placeholder="Email Address">
-          <div class="validate" v-show="errors.has('email')">{{ errors.first('email') }}</div>
+          <input v-validate="'required|email'" name="email" v-model="email" placeholder="Email address">
+                <div class="validate" v-show="errors.has('email')">{{ errors.first('email') }}</div>
         </div>
         <div class="wide-form">
           <label>Password</label>
@@ -67,9 +67,10 @@ export default {
   methods: {
     ...mapActions(['addMessage', 'clearMessage']),
     login(user) { 
+      this.isLoading = true
       firebase.auth().signInWithEmailAndPassword(user.email, user.password)
         .then(() => {
-          this.isLoading = true
+          
           // clear message
           this.clearMessage()
           this.$router.push({path: '/checkout'})
