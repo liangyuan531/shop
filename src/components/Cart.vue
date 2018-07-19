@@ -62,7 +62,8 @@ export default {
   data () {
     return {
       subTotal: 0,
-      status: false
+      status: false,
+      gotdata: null
     }
   },
   computed: {
@@ -112,16 +113,24 @@ export default {
           if(this.userInfo.firstName != ''){
             this.$http.post('http://jsonplaceholder.typicode.com/posts', {
                 body: {
-                    cardNumber: "78787878787878",
-                    expiryDate: "08/28",
-                    CVV: 888,
-                    status: true
+                    "Email": "zarni.api1244@abacus.co",
+                    "FirstName": "zarni",
+                    "LastName": "aung",
+                    "CardHolder": "zarni aung",
+                    "CardNumber": "4111111111111111",
+                    "ExpiryYear": "2020",
+                    "ExpiryMonth": "08",
+                    "Amount": "1080",
+                    "Cvv": "123",
+                    "Country":"AUS"
                 }
             }, {emulateJSON: true}).then(response => {
                 //console.log('succuss');
                 console.log(response.body)
-                //this.status = response.body[status]
-                console.log(response.status)
+                var eValue=eval('response.body.'+'body[Email]');
+                //gotdata = response.body
+                //this.status = response.body["status"]
+                console.log(eValue)
             }, response => {
               console.log('error');
             })
