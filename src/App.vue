@@ -56,16 +56,17 @@ export default {
   margin-top: 60px;
 }
 .router-view {
-  margin-right: 50px;
+  margin-right: 400px;
   float: left;
   /* width: 70%; */
   width: auto; 
   height: auto;
 }
 .cart {
-  margin-top: 50px;
+  position: fixed;
+  top: 350px;
+  right: 200px;
   display: inline-block;
-  margin-right: 10px; 
   width: auto; 
   height: auto
 }
@@ -78,7 +79,9 @@ export default {
   margin-right: 200px;
 }
 .footer {
-  margin-top: 140px;
+  position: fixed; 
+  bottom: 0px;
+  /* margin-top: 140px */
 }
 .fade-enter {
   opacity: 0;

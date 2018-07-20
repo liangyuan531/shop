@@ -130,6 +130,7 @@ label {
 }
 
 .Order-detail-container {
+    margin-left: 400px;
     padding-left: 40px;
     width: 400px;
     background-color: white;

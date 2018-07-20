@@ -1,6 +1,7 @@
 <template>
 <div>
   <div class="cart">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="cart-header">
         <!-- <label>Your Order</label> -->
     </div>
@@ -39,7 +40,10 @@
             <button v-show="showCheckout" class="checkout-btn" @click="goToCheckout">Checkout</button>
             <!-- </router-link> -->
             <!-- <router-link to="/order-detail"  -->
-            <button v-show="showPaynow" class="checkout-btn" @click.prevent="pay">Pay Now</button>
+            <button v-show="showPaynow" class="checkout-btn" @click.prevent="pay">
+                <i v-if="isLoading" class="fa fa-spinner fa-spin" />
+                Pay Now
+            </button>
             <!-- </router-link> -->
         </div>
     </div>
@@ -63,7 +67,8 @@ export default {
     return {
       subTotal: 0,
       status: false,
-      responseStatus: -1
+      responseStatus: -1,
+      isLoading: false
     }
   },
   computed: {
@@ -106,27 +111,44 @@ export default {
           this.$store.dispatch('cart/backToVouchers')
       },
       payWithRequest(){
+          var expirydate = this.cardInfo.expiry.split('/')
+          var month = expirydate[0]
+          var year = expirydate[1]
+          var amount = this.totalPrice
+        
           this.$http.post('http://dev.posski.com/v5/AbacusPayment', {
                     "Email": this.userInfo.email,
                     "FirstName": this.userInfo.firstName,
                     "LastName": this.userInfo.lastName,
                     "CardHolder": "zarni aung",
                     "CardNumber": this.cardInfo.cardNum,
-                    "ExpiryYear": "2020",
-                    "ExpiryMonth": "08",
-                    "Amount": this.totalPrice,
+                    "ExpiryYear": "20"+year,
+                    "ExpiryMonth": month,
+                    "Amount": amount,
                     "Cvv": this.cardInfo.cvv,
                     "Country":"AUS"
-                    // "Status": {
-                    //     "Code": 0,
-                    //     "Message": ""
-                    // }
+                    // // "Status": {
+                    // //     "Code": 0,
+                    // //     "Message": ""
+                    // // }
+    //                 "Email": "zarni.api1244@abacus.co",
+    // "FirstName": "zarni",
+    // "LastName": "aung",
+    // "CardHolder": "zarni aung",
+    // "CardNumber": "4111111111111111",
+    // "ExpiryYear": "2020",
+    // "ExpiryMonth": "08",
+    // "Amount": "888",
+    // "Cvv": "888",
+    // "Country":"AUS"
+                
             }).then(response => {
                 var data = response.body
                 console.log('response:', response )
                 console.log('response.data:', response.data )
                 this.responseStatus = data.Status.Code
                 if(this.responseStatus != 0){
+                    this.isLoading = false
                     let message_obj = {
                         message: 'Payment unsuccessful',
                         messageClass: "danger"
@@ -148,12 +170,14 @@ export default {
             })
       },
       pay(user) {
+          this.isLoading = true
           if(this.userInfo.email != '' && this.userInfo.password != ''){
                console.log('created');
                firebase.auth().createUserWithEmailAndPassword(this.userInfo.email, this.userInfo.password)
                 //.then()
           }
           if(this.userInfo.firstName === '' && this.userInfo.address === ''){
+                this.isLoading = false
                 let message_obj = {
                     message: 'You must input your information and deliver address',
                     messageClass: "danger"
@@ -162,6 +186,7 @@ export default {
                return
           }
           if(this.cardInfo.cardNum === ''){
+               this.isLoading = false
                let message_obj = {
                     message: 'You must input payment information',
                     messageClass: "danger"

@@ -49,13 +49,13 @@ export default {
     return {
       email: '',
       password: '',
-      users: [],
+      //users: [],
       isLoading: false
     }
   },
   firestore() {
     return {
-      users: db.collection('users')
+      //users: db.collection('users')
     }
   },
   computed: {
