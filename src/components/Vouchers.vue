@@ -16,7 +16,7 @@
     <div class="title">Gift Cards</div>
     <div class="vouchers-wall">
       <ul v-for="(voucher, id) in menus[0].Categories[0].SubMenuItems" :key="id">
-        <li class="voucher" @click="openDialog(voucher.Price)">
+        <li class="voucher" @click="openDialog(voucher.Price)" >
           <span class="price">${{voucher.Price}}</span>
           <span class="name">{{voucher.Name}}</span>
         </li>
@@ -94,7 +94,6 @@ li{
   float: left;
 }
 .price {
-  background-color: white;
   position: relative;
   font-size: 3em;
   font-weight: bold;
@@ -106,7 +105,7 @@ li{
   font-weight: bold;
   font-size: 1.1em;
   top: 20px;
-  right: 30px;
+  right: 35px;
 }
 .voucher {
   height: 180px;
