@@ -79,9 +79,10 @@ export default {
   margin-right: 200px;
 }
 .footer {
+  
   position: fixed; 
   bottom: 0px;
-  /* margin-top: 140px */
+  /* margin-top: 140px; */
 }
 .fade-enter {
   opacity: 0;

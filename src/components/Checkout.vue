@@ -40,7 +40,7 @@
                     <tr>
                         <td>
                             <div class="box">
-                                <input type="radio" :checked="check" @click="choose"><span></span>
+                                <input type="radio" :checked="check1" @click="choose1"><span></span>
                             </div>
                         </td>
                         <td>
@@ -55,7 +55,7 @@
                     <span>Left unchecked you will be placing your order as a guest</span>
                 </label> -->   
             </div>
-            <div class="password" v-if="check">
+            <div class="password" v-if="check1">
                 <div class="wide-form">
                     <label>Create Your Password</label>
                     <input type="password" v-validate="'required|min:6'" name="pwd" v-model="userInfo.password" placeholder="Password">
@@ -119,7 +119,7 @@
             </div>
             <div>
                 <div class="box">
-                    <input type="radio" :checked="check" @click="choose"><span></span>
+                    <input type="radio" :checked="check2" @click="choose2"><span></span>
                 </div>
                 <label for>Save card for next time</label>
             </div>
@@ -142,7 +142,8 @@ export default {
   },
   computed: {
       ...mapState({
-          check: state => state['checkout'].isChecked,
+          check1: state => state['checkout'].isChecked1,
+          check2: state => state['checkout'].isChecked2,
           isLogin: state => state['login'].isLogin,
           useremail: state => state['login'].useremail
       }),
@@ -154,8 +155,11 @@ export default {
           this.$store.dispatch('login/logout')
       },
       // radio choosing
-      choose() {
-          this.$store.dispatch('checkout/choose')
+      choose1() {
+          this.$store.dispatch('checkout/choose1')
+      },
+      choose2() {
+          this.$store.dispatch('checkout/choose2')
       }
   },
   beforeMount: function() {

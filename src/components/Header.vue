@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <img :src="img" style="width: 100%;"/>
+    <!-- <img :src="img" style="width: 100%;"/> -->
   </div>
 </template>
 
@@ -22,5 +22,7 @@ export default {
     width: auto;
     margin-top: -55px;
     margin-bottom: 20px;
+    background: url('../assets/head/head.png') no-repeat;
+    height: 300px;
 }
 </style>

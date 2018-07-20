@@ -185,7 +185,7 @@ export default {
                this.addMessage(message_obj)
                return
           }
-          if(this.cardInfo.cardNum === ''){
+          if(this.cardInfo.cardNum === '' || this.cardInfo.expiry ==='' || this.cardInfo.cvv === ''){
                this.isLoading = false
                let message_obj = {
                     message: 'You must input payment information',
