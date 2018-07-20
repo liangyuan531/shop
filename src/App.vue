@@ -60,7 +60,7 @@ export default {
   float: left;
   /* width: 70%; */
   width: auto; 
-  height: auto
+  height: auto;
 }
 .cart {
   margin-top: 50px;

@@ -22,9 +22,7 @@ export default {
     showMessageBar() {
       return this.messages.message && this.messages.message.length > 0;
     },
-    messageClass() {
-        console.log(this.messages.messageClass);
-        
+    messageClass() { 
       let mgClass = this.messages.messageClass;
       return "col-xs-12 panel panel-" + mgClass + " " + (this.showMessageBar ? "" : "hidden");
     },
@@ -76,7 +74,7 @@ export default {
 }
 
 .panel-success {
-  background-color: #5cb85c;
+  background-color: #3862EB;
   color: #FFF;
 }
 

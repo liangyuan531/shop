@@ -131,7 +131,7 @@
 <script>
 import { mapState } from 'vuex'
 import { mapFields } from 'vuex-map-fields';
-import firebase from 'firebase/app'
+import firebase,{ functions } from 'firebase/app'
 require('firebase/auth')
 export default {
   name: 'Checkout',
@@ -162,6 +162,7 @@ export default {
       // in confirm page back to checkout page
       this.$store.dispatch('cart/showCart')
   }
+
 }
 </script>
 

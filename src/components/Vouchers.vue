@@ -1,5 +1,5 @@
 <template>
-  <div class="Vouchers">
+  <div class="vouchers">
     <table cellspacing="15px;">
       <thead id="gift_cards_head" align="left">Gift Cards</thead>
       <tbody>
@@ -52,6 +52,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+.vouchers {
+  height: 420px;
+}
 div {
   font-family: 'Nunito Sans', sans-serif
 }

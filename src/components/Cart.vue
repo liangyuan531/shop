@@ -107,11 +107,10 @@ export default {
       },
       payWithRequest(){
           this.$http.post('http://dev.posski.com/v5/AbacusPayment', {
-                body: {
                     "Email": this.userInfo.email,
                     "FirstName": this.userInfo.firstName,
                     "LastName": this.userInfo.lastName,
-                    "CardHolder": "liang",
+                    "CardHolder": "zarni aung",
                     "CardNumber": this.cardInfo.cardNum,
                     "ExpiryYear": "2020",
                     "ExpiryMonth": "08",
@@ -122,10 +121,10 @@ export default {
                     //     "Code": 0,
                     //     "Message": ""
                     // }
-                }
             }).then(response => {
                 var data = response.body
-                console.log(data)
+                console.log('response:', response )
+                console.log('response.data:', response.data )
                 this.responseStatus = data.Status.Code
                 if(this.responseStatus != 0){
                     let message_obj = {
