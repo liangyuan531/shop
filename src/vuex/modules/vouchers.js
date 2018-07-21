@@ -1,6 +1,7 @@
 const state = {
     amount: 0,
-    isOpen: false
+    isOpen: false,
+    description: ''
 }
 
 const getters = {
@@ -12,6 +13,9 @@ const actions = {
     },
     closeForm({ commit }) {
         commit('closeWindow')
+    },
+    setDescription({ commit }, description) {
+        commit('description', description)
     }
 }
 
@@ -22,6 +26,9 @@ const mutations = {
     },
     closeWindow(state) {
         state.isOpen = false
+    },
+    description(state, description) {
+        state.description = description
     }
 }
 

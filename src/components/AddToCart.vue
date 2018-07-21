@@ -7,8 +7,9 @@
             <div class="amount">
                 <strong>${{ amount }} Gift Card</strong>
             </div>
-            <div class="description">
-                <input v-model="description" placeholder="Decription or ingredients here">
+            <div class="description" >
+                <input v-model="description" placeholder="Decription or ingredients here" v-if="!des.length">
+                <input v-model="description" v-else>{{des}}
             </div>
         </div>
         <div class="optional">
@@ -61,7 +62,8 @@ export default {
   computed: {
     ...mapState({
         amount: state => state['vouchers'].amount,
-        giftNum: state => state['addToCart'].giftNum
+        giftNum: state => state['addToCart'].giftNum,
+        des: state => state['vouchers'].description,
     })
   },
   methods: {

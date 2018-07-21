@@ -16,9 +16,18 @@
     <div class="title">Gift Cards</div>
     <div class="vouchers-wall">
       <ul v-for="(voucher, id) in menus[0].Categories[0].SubMenuItems" :key="id">
-        <li class="voucher" @click="openDialog(voucher.Price)" >
-          <span class="price">${{voucher.Price}}</span>
-          <span class="name">{{voucher.Name}}</span>
+        <li class="voucher">
+          <div class="price-container" align="left" @click="openDialog(voucher.Price, $event)">
+            <span class="price">${{voucher.Price}}</span>
+          </div>
+          <div class="other-container" align="left">
+            <div class="name">
+              <span>{{voucher.Name}}</span>
+            </div>
+            <div class="description">
+              <input v-model="description" placeholder="Decription or ingredients here">
+            </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -40,7 +49,8 @@ export default {
   // },
   data () {
     return {
-      menus: []
+      menus: [],
+      description: ''
     }
   },
   firestore() {
@@ -55,8 +65,14 @@ export default {
     })
   },
   methods: {
-    openDialog(amount) {
+    openDialog(amount, event) {
      this.$store.dispatch('vouchers/openForm', amount)
+     this.des()
+    },
+    des(description){
+      console.log('set desc', this.description);
+      
+     this.$store.dispatch('vouchers/setDescription', this.description)
     }
   },
   beforeMount: function() {
@@ -94,24 +110,41 @@ li{
   float: left;
 }
 .price {
+  
+}
+
+.price-container {
   position: relative;
   font-size: 3em;
   font-weight: bold;
   top: 40px;
-  right: 80px;
+  left: 30px;
+  cursor: pointer;
 }
-.name {
+.other-container {
   position: relative;
   font-weight: bold;
   font-size: 1.1em;
-  top: 20px;
-  right: 35px;
+  top: -15px;
+  left: 210px;
+}
+/* .description {
+  margin-top: 0px;
+  
+}
+.name {
+  
+} */
+.description input {
+    border-width: 0;
+    width: 200px;
+    font-size: 0.8em;
 }
 .voucher {
   height: 180px;
   background: url('../assets/vouchers/voucher.png') no-repeat;
 }
-div {
+div, input {
   font-family: 'Nunito Sans', sans-serif
 }
 table {
