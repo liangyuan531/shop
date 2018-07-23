@@ -48,12 +48,7 @@
                             <small>Left unchecked you will be placing your order as a guest</small>
                         </td>
                     </tr>
-                </table>
-                
-                <!-- <label for>
-                    Register a new account<br>
-                    <span>Left unchecked you will be placing your order as a guest</span>
-                </label> -->   
+                </table> 
             </div>
             <div class="password" v-if="check1">
                 <div class="wide-form">
@@ -229,6 +224,7 @@ label {
     background-color: white;
     padding-top: 30px;
     padding-bottom: 30px;
+    margin-left: 100px;
 }
 .radio {
     position: absolute;  

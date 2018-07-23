@@ -4,7 +4,6 @@
     <div class="head-bar">
        <div class="total-price" align="left">${{totalPrice}}</div>
     </div>
-   
     <div class="store-container" align="center">
         <div class="store-name">
           {{store[0].Name}}
@@ -18,7 +17,6 @@
             <li>Open {{open.OpeningTime.substring(0, 5)}} to {{open.ClosingTime.substring(0, 5)}} {{open.DayOfWeek}}</li>
           </ul>
         </div>
-      
     </div>
   </div>
 </template>
@@ -72,7 +70,7 @@ export default {
   padding-top: 14px;
 }
 .store-container {
-  /* opacity: 0.8; */
+  opacity: 0.7;
   width: 560px;
   height: 294px;
   background-color: black;

@@ -101,11 +101,12 @@ div {
   font-family: 'Nunito Sans', sans-serif
 }
 .login-container {
-    padding-left: 40px;
+    padding-left: 50px;
     width: 700px;
     background-color: white;
     padding-top: 30px;
     padding-bottom: 30px;
+    margin-left: 100px;
 }
 .forgetPwd {
   margin-top: 20px;
@@ -125,12 +126,13 @@ div {
 }
 .login-bar {
     background-color: #F1FCFF;
-    width: 600px;
+    width: 650px;
     padding-top: 5px;
     padding-bottom: 20px;
 }
 .login {
     margin: 30px auto;
+    padding-left: 30px;
 }
 .login-info {
     margin: 30px auto;
@@ -191,6 +193,7 @@ label {
     box-sizing: border-box;
     margin-bottom: 15px;
     border-radius: 0 !important;
+    width: 500px;
 }
 .loginBtn {
     cursor: pointer;

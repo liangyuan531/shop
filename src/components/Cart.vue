@@ -48,11 +48,11 @@
         </div>
     </div>
   </div>
-  <!-- <div class="continueOrder" v-show="continueOrder">
+  <div class="continueOrder" v-show="continueOrder">
       <router-link to="/">
         <button class="continueOrder-btn" @click="backToVouchers">Continue Ordering</button>
       </router-link>
-  </div> -->
+  </div>
 </div>
 </template>
 
@@ -105,7 +105,6 @@ export default {
             }
             this.addMessage(message_obj)
           }
-          
       },
       backToVouchers() {
           this.$store.dispatch('cart/backToVouchers')
@@ -126,22 +125,7 @@ export default {
                     "ExpiryMonth": month,
                     "Amount": amount,
                     "Cvv": this.cardInfo.cvv,
-                    "Country":"AUS"
-                    // // "Status": {
-                    // //     "Code": 0,
-                    // //     "Message": ""
-                    // // }
-    //                 "Email": "zarni.api1244@abacus.co",
-    // "FirstName": "zarni",
-    // "LastName": "aung",
-    // "CardHolder": "zarni aung",
-    // "CardNumber": "4111111111111111",
-    // "ExpiryYear": "2020",
-    // "ExpiryMonth": "08",
-    // "Amount": "888",
-    // "Cvv": "888",
-    // "Country":"AUS"
-                
+                    "Country":"AUS"             
             }).then(response => {
                 var data = response.body
                 console.log('response:', response )
@@ -162,14 +146,15 @@ export default {
                 }
                 this.addMessage(message_obj)
                 // go to order detail page
-                this.$router.push({path: '/order-detail'});
+                this.$router.push({path: '/order-detail'})
                 // hind cart
                 this.$store.dispatch('cart/hindCart')
+                this.isLoading = false
             }, response => {
               console.log('error');
             })
       },
-      pay(user) {
+      pay() {
           this.isLoading = true
           if(this.userInfo.email != '' && this.userInfo.password != ''){
                console.log('created');
