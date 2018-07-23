@@ -1,13 +1,22 @@
 <template>
   <div class="container">
     <!-- <img :src="img" style="width: 100%;"/> -->
-    <div class="total-price" align="left">${{totalPrice}}</div>
-    <div class="store">
-      <!-- <div class="store-name">{{store[0].Name}}</div>
-      <div class="store-address">{{store[0].Location.Address}}, {{store[0].Location.Suburb}}, {{store[0].Location.Postcode}}</div>
-      <div class="store-open" v-for="(open, id) in store[0].OperatingHours" :key="id">
-        <div>open {{Open.OpeningTime.substring(0, 5)}} to {{open.ClosingTime.substring(0, 5)}} {{open.DayOfWeek}}</div>
-      </div> -->
+    <div class="head-bar">
+       <div class="total-price" align="left">${{totalPrice}}</div>
+    </div>
+   
+    <div class="store-container" align="center">
+        <div class="store-name">
+          {{store[0].Name}}
+        </div>
+        <div class="store-address">
+          {{store[0].Location.Address}}, {{store[0].Location.Suburb}}, {{store[0].Location.Postcode}}
+        </div>
+        <!-- {{store[0].OperatingHours[0].OpeningTime}}  -->
+        <ul class="store-open" v-for="(open, id) in store[0].OperatingHours" :key="id">
+          <li>Open {{open.OpeningTime.substring(0, 5)}} to {{open.ClosingTime.substring(0, 5)}} {{open.DayOfWeek}}</li>
+        </ul>
+      
     </div>
   </div>
 </template>
@@ -19,7 +28,7 @@ export default {
   name: 'ShopHeader',
   data () {
     return {
-      
+      store: []
     }
   },
   firestore() {
@@ -46,22 +55,36 @@ export default {
     height: 300px;
     font-family: 'Nunito Sans', sans-serif;
 }
-.total-price {
-  width: 60px;
-  color: white;
+.head-bar {
+  background: url('../assets/head/shop.png') no-repeat;
   position: relative;
-  padding-top: 29px;
-  margin-left: 1475px;
+  margin-left: 1425px;
+  top: 15px;
+  height: 50px;
+
 }
-.store {
-  margin-top: 90px;
+.total-price {
+  width: 200px;
   color: white;
-  margin-left: 600px;
+  padding-left: 50px;
+  padding-top: 14px;
+}
+.store-container {
+  width: 560px;
+  height: 294px;
+  background-color: black;
+  margin-top: -50px;
+  color: white;
+  margin-left: 670px;
 }
 .store-name {
   font-size: 2em;
+  padding-top: 30px;
 }
 .store-address .store-open {
   font-weight: bold;
+}
+.store-open li{
+  list-style:none;
 }
 </style>

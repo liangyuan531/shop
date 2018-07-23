@@ -55,21 +55,31 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.router-view {
-  margin-right: 400px;
-  float: left;
-  /* width: 70%; */
-  width: auto; 
-  height: auto;
+@media screen and (min-width: 300px){
+  .router-view {
+    margin-right: 400px;
+    float: left;
+    /* width: 70%; */
+    width: auto; 
+    height: auto;
+    -webkit-flex: 0 0 45%;
+    flex: 1;
+  }
 }
-.cart {
-  position: fixed;
-  top: 350px;
-  right: 200px;
-  display: inline-block;
-  width: auto; 
-  height: auto
-}
+
+@media screen and (min-width: 300px){
+  .cart {
+    flex: 0 0 200px;
+    position: relative;
+    top: 50px;
+    right: 200px;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+} 
+
 .content {
   display: flex;
   justify-content: center; 

@@ -14,28 +14,29 @@
       </tbody>
     </table> -->
     <div class="title">Gift Cards</div>
-    <div class="vouchers-wall">
-      <ul v-for="(voucher, id) in menus[0].Categories[0].SubMenuItems" :key="id">
-        <li class="voucher">
-          <div class="price-container" align="left" @click="openDialog(voucher.Price, $event)">
-            <span class="price">${{voucher.Price}}</span>
-          </div>
-          <div class="other-container" align="left">
-            <div class="name">
-              <span>{{voucher.Name}}</span>
+      <div class="vouchers-wall">
+        <ul v-for="(voucher, id) in menus.Categories[0].SubMenuItems" :key="id">
+          <li class="voucher">
+            <div class="price-container" align="left" @click="openDialog(voucher.Price, $event)">
+              <span class="price">${{voucher.Price}}</span>
             </div>
-            <div class="description">
-              <input v-model="description" placeholder="Decription or ingredients here">
+            <div class="other-container" align="left">
+              <div class="name">
+                <span>{{voucher.Name}}</span>
+              </div>
+              <div class="description">
+                <input v-model="description" placeholder="Decription or ingredients here">
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
-    </div>
+          </li>
+        </ul>
+      </div>
     <!-- <div>{{menus[0].Categories[0].SubMenuItems}}</div> -->
     <!-- <div>
       <dialog-bar v-show="isOpen"></dialog-bar>
     </div> -->
   </div>
+  
 </template>
 <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 <script>
@@ -55,7 +56,7 @@ export default {
   },
   firestore() {
     return {
-      menus: db.collection('Menus').doc('2006400').collection('StoreMenus')
+      menus: db.collection('Menus').doc('2006400').collection('StoreMenus').doc('GiftCardMenu')
     }
   },
   computed: {
