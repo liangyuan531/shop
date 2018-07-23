@@ -48,11 +48,11 @@
         </div>
     </div>
   </div>
-  <div class="continueOrder" v-show="continueOrder">
+  <!-- <div class="continueOrder" v-show="continueOrder">
       <router-link to="/">
         <button class="continueOrder-btn" @click="backToVouchers">Continue Ordering</button>
       </router-link>
-  </div>
+  </div> -->
 </div>
 </template>
 

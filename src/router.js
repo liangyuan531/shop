@@ -2,8 +2,12 @@ import Vouchers from './components/Vouchers'
 import Checkout from './components/Checkout'
 import Login from './components/Login'
 import OrderDetail from './components/OrderDetail'
+import VueRouter from 'vue-router'; 
+import Vue from 'vue'
 
-export const routes = [
+Vue.use(VueRouter)
+
+const routes = [
     {
         path: '/',
         name: 'Vouchers',
@@ -25,3 +29,16 @@ export const routes = [
         component: OrderDetail
     }
 ]
+
+export const router = new VueRouter({
+      mode: 'history',
+      routes
+})
+
+// router.beforeEach((to, from, next) => {
+//     if(to.path === '/checkout' || to.path === '/order-detail' ){
+//         next('/')
+//     }
+//     next('/')
+// })
+ 

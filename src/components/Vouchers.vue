@@ -110,10 +110,6 @@ li{
   display: block;
   float: left;
 }
-.price {
-  
-}
-
 .price-container {
   position: relative;
   font-size: 3em;
@@ -129,13 +125,6 @@ li{
   top: -15px;
   left: 210px;
 }
-/* .description {
-  margin-top: 0px;
-  
-}
-.name {
-  
-} */
 .description input {
     border-width: 0;
     width: 200px;
