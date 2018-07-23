@@ -1,10 +1,10 @@
 <template>
-<div>
+<div class="cart-container">
   <div class="cart">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="cart-header">
-        <!-- <label>Your Order</label> -->
-    </div>
+    <!-- <div class="cart-header">
+        <label>Your Order</label>
+    </div> -->
     <div class="cart-content">
         <!-- cart items -->
         <div class="cart-menus" v-if="isEmpty"> 

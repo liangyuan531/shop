@@ -13,9 +13,11 @@
           {{store[0].Location.Address}}, {{store[0].Location.Suburb}}, {{store[0].Location.Postcode}}
         </div>
         <!-- {{store[0].OperatingHours[0].OpeningTime}}  -->
-        <ul class="store-open" v-for="(open, id) in store[0].OperatingHours" :key="id">
-          <li>Open {{open.OpeningTime.substring(0, 5)}} to {{open.ClosingTime.substring(0, 5)}} {{open.DayOfWeek}}</li>
-        </ul>
+        <div class="store-open">
+          <ul v-for="(open, id) in store[0].OperatingHours" :key="id">
+            <li>Open {{open.OpeningTime.substring(0, 5)}} to {{open.ClosingTime.substring(0, 5)}} {{open.DayOfWeek}}</li>
+          </ul>
+        </div>
       
     </div>
   </div>
@@ -70,6 +72,7 @@ export default {
   padding-top: 14px;
 }
 .store-container {
+  /* opacity: 0.8; */
   width: 560px;
   height: 294px;
   background-color: black;
@@ -79,12 +82,20 @@ export default {
 }
 .store-name {
   font-size: 2em;
-  padding-top: 30px;
+  padding-top: 50px;
 }
 .store-address .store-open {
   font-weight: bold;
 }
+.store-address {
+  margin-top: 20px;
+}
+.store-open {
+  font-size: .7em;
+  margin-top: 100px;
+}
 .store-open li{
   list-style:none;
+  height: 2px;
 }
 </style>

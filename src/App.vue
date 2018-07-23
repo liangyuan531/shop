@@ -7,7 +7,7 @@
         <transition name='fade' mode='out-in'>
           <router-view/>
         </transition>
-      </div>
+      </div>   
       <div class="cart" v-show="cartShow">
         <cart-view></cart-view>
       </div>   
@@ -55,30 +55,27 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-@media screen and (min-width: 300px){
-  .router-view {
-    margin-right: 400px;
-    float: left;
-    /* width: 70%; */
-    width: auto; 
-    height: auto;
-    -webkit-flex: 0 0 45%;
-    flex: 1;
-  }
+.router-view {
+  /* margin-right: 400px;
+  float: left;
+  width: 70%;
+  width: auto; 
+  height: auto;*/
+  margin-left: 50px;
+  -webkit-flex: 0 0 40%;
+  flex: 1; 
 }
 
-@media screen and (min-width: 300px){
+
+
   .cart {
-    flex: 0 0 200px;
-    position: relative;
-    top: 50px;
-    right: 200px;
-    display: block;
+    /* flex: 0 0 300px; */
+    /* position: relative; */
     height: auto;
-    margin: 0 auto;
-    box-sizing: border-box;
+    /* right: 100px; */
+    margin-right: 100px;
   }
-} 
+
 
 .content {
   display: flex;
