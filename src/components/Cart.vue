@@ -161,12 +161,23 @@ export default {
                firebase.auth().createUserWithEmailAndPassword(this.userInfo.email, this.userInfo.password)
                 //.then()
           }
-          if(this.userInfo.firstName === '' && this.userInfo.address === ''){
+          if(this.userInfo.firstName === '' || this.userInfo.address === '' ||
+            this.userInfo.email === '' || this.userInfo.postcode === '' ||
+            this.userInfo.city === '' || this.userInfo.phone === ''){
                 this.isLoading = false
                 let message_obj = {
                     message: 'You must input your information and deliver address',
                     messageClass: "danger"
                 }
+               this.addMessage(message_obj)
+               return
+          }
+          if(this.cardInfo.cvv.length != 3 || this.cardInfo.cardNum.length != 16) {
+              this.isLoading = false
+               let message_obj = {
+                    message: 'You must input right payment information',
+                    messageClass: "danger"
+               }
                this.addMessage(message_obj)
                return
           }
